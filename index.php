@@ -36,7 +36,7 @@
         채점 프로세스가 개선되었습니다.<br>
         DB 구조가 크게 개선되었습니다.<br>
         <code>problem_upload</code>를 통해 문제를 업로드할 수 있습니다. 사용방법: <code>$ /home/judge/problem_upload</code> 이후 instruction을 잘 따르면 됩니다.<br>
-        <code>create_answer</code>를 통해 정답 소스가 있다면 넣어둔 <code>n.in</code>들에 대한 <code>n.out</code> 파일을 자동으로 생성할 수 있습니다. (다만 <code>n.in</code>은 직접 넣어야 합니다.) 사용방법: <code>$ /home/judge/create_answer [problem_id] [solution executable path]</code>
+        <code>create_answer</code>를 통해 정답 소스가 있다면 넣어둔 <code>n.in</code>들에 대한 <code>n.out</code> 파일을 자동으로 생성할 수 있습니다. (다만 <code>n.in</code>은 직접 넣어야 합니다.) 사용방법: <code>$ /home/judge/create_answer [problem_id] [solution executable path]</code><br>
         GITHUB에 업로드되었습니다. url은 <code>https://github.com/GSAIDEA/GSAOJ/</code>입니다.</p>
         <hr>
         <h3>발견된 오류</h3>
