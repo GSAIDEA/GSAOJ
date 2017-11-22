@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+  <style type="text/css" media="screen">
+    #editor{
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <ul class="nav navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:history.back();">뒤로가기</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;" id="select_code">Languange Select<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="javascript:sel_lang('C++')">C++</a></li>
+          <li><a href="javascript:sel_lang('C#')">C#</a></li>
+          <li><a href="javascript:sel_lang('Java')">Java</a></li>
+          <li><a href="javascript:sel_lang('Python')">Python</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:submitfunction();">제출</a>
+      </li>
+    </ul>
+  </nav>  
+  <div id="editor"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/c_cpp");
+    editor.setFontSize(20);
+    document.getElementById('editor').style.top='56px';
+    editor.renderer.setPadding(10);
+    editor.container.style.lineHeight = 1.5
+    editor.renderer.updateFontSize();
+    function submitfunction(){
+      var code = editor.getValue();
+      var form = document.createElement("form");
+      form.setAttribute("method", "post");
+      form.setAttribute("action", "./save.php");
+ 
+    //히든으로 값을 주입시킨다.
+      var hiddenField = document.createElement("input");
+      hiddenField.setAttribute("type", "hidden");
+      hiddenField.setAttribute("name", "code");
+      hiddenField.setAttribute("value", code);
+ 
+      form.appendChild(hiddenField);
+      document.body.appendChild(form);
+      form.submit();
+    }
+    function sel_lang(lang){
+      switch(lang){
+        case 'C++':
+          editor.getSession().setMode("ace/mode/c_cpp");
+          document.getElementById("select_code").innerHTML = "C++"
+          break;
+        case 'Java':
+          editor.getSession().setMode("ace/mode/java");
+          document.getElementById("select_code").innerHTML = "Java"
+          break;
+        case 'Python':
+          editor.getSession().setMode("ace/mode/python");
+          document.getElementById("select_code").innerHTML = "Python"
+          break;
+        case 'C#':
+          editor.getSession().setMode("ace/mode/csharp");
+          document.getElementById("select_code").innerHTML = "C#"
+          break;
+      }
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
