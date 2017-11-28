@@ -39,10 +39,12 @@ $problem_no = $_GET['id'];
 if(strlen($code) < 1){
 	echo "<script>alert('코드를 작성해주세요');</script>";
 	echo "<script>history.back();</script>";
+	die();
 }
 if(strcmp($extension, "fuckyou") == 0){
 	echo "<script>alert('오류가 발생했습니다.');</script>";
 	echo "<script>history.back();</script>";
+	die();
 }
 try{
 $db_conn->beginTransaction();

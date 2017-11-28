@@ -7,7 +7,7 @@ if(!$auth->islogged()){
     die();
 }
 if(isset($_GET['submitid'])){
-	$stmt = $db_conn->prepare("select uid from submit where submit_id=:sub");
+	$stmt = $db_conn->prepare("select uid, language from submit where submit_id=:sub");
 	$stmt->execute([":sub"=>$_GET['submitid']]);
 	$res = $stmt->fetch();
 	if($res['uid'] != $auth->getSessionUID($auth->getSessionHash())){
@@ -16,6 +16,25 @@ if(isset($_GET['submitid'])){
 	}
 }
 require("include/setlang.php");
+function reform_lang($lang){
+	switch($lang){
+		case "C":
+		return ".c";
+		case "C++":
+		case "C++11":
+		case "C++14":
+		case "C++1z":
+		return ".cpp";
+		case "Java";
+		return ".java";
+		case "Python":
+		return ".py";
+		case "C#":
+		return ".cs";
+		default:
+		return "fuckyou";
+	}
+}
 ?>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -41,14 +60,6 @@ require("include/setlang.php");
 	<?php
 	}
 	?>
-	  <!-- <a class="dropdown-item" href="javascript:sel_lang('C')"><?php echo $MSG_EDITOR_C;?></a>
-          <a class="dropdown-item" href="javascript:sel_lang('C++')"><?php echo $MSG_EDITOR_CPP;?></a>
-          <a class="dropdown-item" href="javascript:sel_lang('C++11')"><?php echo $MSG_EDITOR_CPP11;?></a>
-          <a class="dropdown-item" href="javascript:sel_lang('C++14')"><?php echo $MSG_EDITOR_CPP14;?></a>
-          <a class="dropdown-item" href="javascript:sel_lang('C++1z')"><?php echo $MSG_EDITOR_CPP1z;?></a>
-          <a class="dropdown-item" href="javascript:sel_lang('C#')"><?php echo $MSG_EDITOR_CSHARP;?></a>
-          <a class="dropdown-item" href="javascript:sel_lang('Java')"><?php echo $MSG_EDITOR_JAVA;?></a>
-          <a class="dropdown-item" href="javascript:sel_lang('Python')"><?php echo $MSG_EDITOR_PYTHON;?></a> -->
         </div>
       </li>
     </ul>
@@ -80,10 +91,18 @@ require("include/setlang.php");
 
     <?php
     if(isset($_GET['submitid'])){
-	$fp = fopen("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main.cpp","r");
-	$code = fread($fp,filesize("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main.cpp"));
+      $extension = reform_lang($res['language']);
+      if(strcmp($extension, "fuckyou") == 0){
+        echo "<script>alert('오류 발생')</script>";
+        echo "<script>history.back()</script>";
+        die();
+      }
+	    $fp = fopen("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension, "r");
+	    $code = fread($fp,filesize("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension));
+    
+    
     ?>
-	editor.insert(<?php echo json_encode($code);?>);
+	  editor.insert(<?php echo json_encode($code);?>);
     <?php
     }
     ?>
