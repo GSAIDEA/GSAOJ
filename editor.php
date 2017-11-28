@@ -142,6 +142,7 @@ require("include/setlang.php");
         language = "Python3";
         editor.getSession().setMode("ace/mode/python");
         document.getElementById("select_code").innerHTML = "Python3";
+        break;
         case 'C#':
           alert("C/C++ 이외는 준비중입니다!");
 //          $language = "C#";
