@@ -35,7 +35,7 @@ function array_sort($array, $on, $order=SORT_ASC)
     return $new_array;
 }
 
-$res = $db_conn->query("select uid, submit, solved_once, sangme from userdata order by solved desc, submit asc;");
+$res = $db_conn->query("select uid, submit, solved_once, sangme, solved from userdata order by solved_once desc, submit asc;");
 $result = $res->fetchAll(PDO::FETCH_ASSOC);
 array_sort($result, 'solved', SORT_DESC);
 $row_count = count($result);
@@ -122,7 +122,7 @@ for($i=0+50*$page; $i<50+50*$page; $i++) {
 		    ?></th>
 <?php
     foreach($result[$i] as $key=>$val){
-	if($key != 'uid'){
+	if($key != 'uid' && $key != 'solved'){
 ?>
                 <th><?php echo $val; ?></th>
 <?php }}?>

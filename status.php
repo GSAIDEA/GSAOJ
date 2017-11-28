@@ -49,7 +49,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta http-equiv="refresh" content="3;url=#">
+    <!--meta http-equiv="refresh" content="3;url=#"-->
     <?php if($err_status_page) { ?>
         <meta http-equiv='refresh' content='3; url=./status.php'>
     <?php
@@ -140,7 +140,7 @@ else {
                 <th><?php echo $line['submit_id']; ?></th>
                 <th><a href='./userinfo.php?id=<?php echo $line['uid']; ?>'><?php echo $user['userid']; ?></a></th>
                 <th><a href='./problem.php?id=<?php echo $line['problem_id']?>'><?php echo $line['problem_id']; ?></th>
-                <th><?php echo $line['state']; ?></th>
+                <th><a href='./result.php?submitid=<?php echo $line['submit_id'];?>'><?php echo $line['state']; ?></th>
                 <th><?php echo $line['time_usage']; ?>MS</th>
                 <th><?php echo $line['memory_usage'] ?>KB</th>
                 <th><?php echo $line['code_length'] ?>B</th>

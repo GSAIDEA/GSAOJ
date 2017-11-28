@@ -16,6 +16,9 @@ function reform_lang($lang){
 		case "C":
 		return ".c";
 		case "C++":
+		case "C++11":
+		case "C++14":
+		case "C++1z":
 		return ".cpp";
 		case "Java";
 		return ".java";
@@ -33,15 +36,13 @@ $code = $_POST['code'];
 $language = $_POST['lang'];
 $extension = reform_lang($language);
 $problem_no = $_GET['id'];
-if(strlen($code)<1){
-	echo "코드를 작성해주세요";
+if(strlen($code) < 1){
+	echo "<script>alert('코드를 작성해주세요');</script>";
 	echo "<script>history.back();</script>";
 }
-if(strcmp($language, "sibal")==0){
-	echo "오류가 생겼네요! 문의해보세요! 2초 후에 메인으로 돌아갑니다!";
-	sleep(2);
-	echo "<script>window.location = \"./index.php\";</script>";
-	die();
+if(strcmp($extension, "fuckyou") == 0){
+	echo "<script>alert('오류가 발생했습니다.');</script>";
+	echo "<script>history.back();</script>";
 }
 try{
 $db_conn->beginTransaction();

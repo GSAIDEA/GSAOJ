@@ -97,3 +97,22 @@ body {
     line-height: 1.4;
   }
 }
+
+/* editor */
+
+#editor{
+      position: absolute;
+      top: 0;
+      right: 49%;
+      bottom: 0;
+      left: 0;
+      float: left;
+}
+#right{
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      max-width: 49%;
+      height: calc(100vh - 56px);
+}

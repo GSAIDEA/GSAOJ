@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <?php
+require("include/db_info.php");
 require("include/include_auth.php");
 if(!$auth->islogged()){
 	echo "<script>window.location = \"./login.php\";</script>";
     die();
 }
+if(isset($_GET['submitid'])){
+	$stmt = $db_conn->prepare("select uid from submit where submit_id=:sub");
+	$stmt->execute([":sub"=>$_GET['submitid']]);
+	$res = $stmt->fetch();
+	if($res['uid'] != $auth->getSessionUID($auth->getSessionHash())){
+		echo "<script>alert(\"볼 권한이 없습니다.\"); window.history.back();</script>";
+		die();
+	}
+}
 require("include/setlang.php");
 ?>
 <head>
-  <style type="text/css" media="screen">
-    #editor{
-      position: absolute;
-      top: 0;
-      right: 49%;
-      bottom: 0;
-      left: 0;
-      float: left;
-    }
-    #right{
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      max-width: 49%;
-      height: calc(100vh - 56px);
-    }
-  </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="custom-style.css">
   <meta charset="utf-8">
 </head>
 
-<body>
+<body style="padding-top:0;">
+  <header>
   <nav class="navbar navbar-expand-md navbar-light bg-light">
     <ul class="nav navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="./problem.php?id=<?php echo $_GET['id'];?>"><?php echo $MSG_EDITOR_BACK;?></a>
+        <a class="nav-link" href="./problem.php?id=<?php echo $_GET['id'];?>"><?php echo $MSG_EDITOR_BACK;?>  </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;" id="select_code" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $MSG_EDITOR_CPP;?></a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:;" id="select_code" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $MSG_EDITOR_C;?></a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <?php
+        $langq=$db_conn->query("select * from language");
+        foreach($langq as $lang){
+        ?>
+          <a class="dropdown-item" href="javascript:sel_lang('<?php echo $lang['language'];?>')"><?php echo $lang['language']; ?></a>
+	<?php
+	}
+	?>
+	  <!-- <a class="dropdown-item" href="javascript:sel_lang('C')"><?php echo $MSG_EDITOR_C;?></a>
           <a class="dropdown-item" href="javascript:sel_lang('C++')"><?php echo $MSG_EDITOR_CPP;?></a>
-	  <a class="dropdown-item" href="javascript:sel_lang('C')"><?php echo $MSG_EDITOR_C;?></a>
+          <a class="dropdown-item" href="javascript:sel_lang('C++11')"><?php echo $MSG_EDITOR_CPP11;?></a>
+          <a class="dropdown-item" href="javascript:sel_lang('C++14')"><?php echo $MSG_EDITOR_CPP14;?></a>
+          <a class="dropdown-item" href="javascript:sel_lang('C++1z')"><?php echo $MSG_EDITOR_CPP1z;?></a>
           <a class="dropdown-item" href="javascript:sel_lang('C#')"><?php echo $MSG_EDITOR_CSHARP;?></a>
           <a class="dropdown-item" href="javascript:sel_lang('Java')"><?php echo $MSG_EDITOR_JAVA;?></a>
-          <a class="dropdown-item" href="javascript:sel_lang('Python')"><?php echo $MSG_EDITOR_PYTHON;?></a>
+          <a class="dropdown-item" href="javascript:sel_lang('Python')"><?php echo $MSG_EDITOR_PYTHON;?></a> -->
         </div>
       </li>
     </ul>
@@ -53,6 +58,7 @@ require("include/setlang.php");
       </li>
     </ul>
   </nav>
+  </header>
 
   <?php
   $sessionuid=$auth->getSessionUID($auth->getSessionHash());
@@ -61,7 +67,7 @@ require("include/setlang.php");
   <iframe id="right" src="./problem.php?id=<?php echo $_GET['id'];?>" align="right" width="49%" frameBorder="0">인터넷 익스플로러를 사용하지 마세요</iframe>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
   <script>
-    var language = "C++";
+    var language = "C";
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/c_cpp");
@@ -88,7 +94,6 @@ require("include/setlang.php");
       form.setAttribute("method", "post");
       form.setAttribute("action", <?php echo "\"./submit.php?id=".$_GET['id']."&lang=\"";?> + editor.getSession().getMode().$id);
 
-    //히든으로 값을 주입시킨다.
       var codeinput = document.createElement("input");
       codeinput.setAttribute("type", "hidden");
       codeinput.setAttribute("name", "code");
@@ -112,8 +117,23 @@ require("include/setlang.php");
 	  break;
         case 'C++':
           editor.getSession().setMode("ace/mode/c_cpp");
-          document.getElementById("select_code").innerHTML = "C++"
+          document.getElementById("select_code").innerHTML = "C++";
           language = "C++";
+          break;
+        case 'C++11':
+          editor.getSession().setMode("ace/mode/c_cpp");
+          document.getElementById("select_code").innerHTML = "C++11";
+          language = "C++11";
+          break;
+        case 'C++14':
+          editor.getSession().setMode("ace/mode/c_cpp");
+          document.getElementById("select_code").innerHTML = "C++14";
+          language = "C++14";
+          break;
+        case 'C++1z':
+          editor.getSession().setMode("ace/mode/c_cpp");
+          document.getElementById("select_code").innerHTML = "C++1z";
+          language = "C++1z";
           break;
         case 'Java':
           alert("C/C++ 이외는 준비중입니다!");
@@ -137,7 +157,7 @@ require("include/setlang.php");
           document.getElementById("select_code").innerHTML = "C++"
           break;
 	default:
-	  alert("꺼지세요");
+	  alert("시도는 좋았지만 그런 언어는 없어요");
 	  break;
       }
     }
