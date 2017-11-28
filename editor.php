@@ -75,7 +75,7 @@ require("include/setlang.php");
 	    $fp = fopen("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension, "r");
 	    $code = fread($fp,filesize("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension));
     ?>
-      sel_lang(<?php echo $res['language']; ?>);
+      sel_lang("<?php echo $res['language']; ?>");
 	    editor.insert(<?php echo json_encode($code);?>);
     <?php
     }
@@ -102,7 +102,7 @@ require("include/setlang.php");
 
     function sel_lang(lang){
       switch(lang){
-	case 'C':
+      	case 'C':
           editor.getSession().setMode("ace/mode/c_cpp");
           document.getElementById("select_code").innerHTML = "C";
           language = "C";
