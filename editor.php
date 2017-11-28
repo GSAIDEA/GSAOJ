@@ -16,25 +16,6 @@ if(isset($_GET['submitid'])){
 	}
 }
 require("include/setlang.php");
-function reform_lang($lang){
-	switch($lang){
-		case "C":
-		return ".c";
-		case "C++":
-		case "C++11":
-		case "C++14":
-		case "C++1z":
-		return ".cpp";
-		case "Java";
-		return ".java";
-		case "Python":
-		return ".py";
-		case "C#":
-		return ".cs";
-		default:
-		return "fuckyou";
-	}
-}
 ?>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -91,12 +72,9 @@ function reform_lang($lang){
 
     <?php
     if(isset($_GET['submitid'])){
-      $extension = reform_lang($res['language']);
-      if(strcmp($extension, "fuckyou") == 0){
-        echo "<script>alert('오류 발생')</script>";
-        echo "<script>history.back()</script>";
-        die();
-      }
+      $ext_stmt = $db_conn->prepare("select extension from language where language=:lang");
+      $ext_stmt->execute([":lang"=>$res['language']]);
+      $extension = $ext_stmt->fetch()['extension'];
 	    $fp = fopen("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension, "r");
 	    $code = fread($fp,filesize("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension));
     

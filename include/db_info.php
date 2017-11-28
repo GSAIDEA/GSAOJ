@@ -24,10 +24,4 @@ try{
 	echo "데이터베이스에 연결할 수 없습니다.".PHP_EOL; //user friendly message
 	echo $ex->getMessage();
 }
-/*$db_conn = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
-
-if($db_conn->connect_errno) {
-    echo "Failed to connect to MySQL: " . $db_conn->connect_error;
-    exit();
-}*/
 ?>
