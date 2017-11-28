@@ -3,9 +3,10 @@
 require("include/db_info.php");
 require("include/include_auth.php");
 if(!$auth->islogged()){
-	echo "<script>window.location = \"./login.php\";</script>";
-    die();
+  echo "<script>window.location = \"./login.php\";</script>";
+  die();
 }
+$sessionuid=$auth->getSessionUID($auth->getSessionHash());
 if(isset($_GET['submitid'])){
 	$stmt = $db_conn->prepare("select uid, language from submit where submit_id=:sub");
 	$stmt->execute([":sub"=>$_GET['submitid']]);
@@ -51,10 +52,6 @@ require("include/setlang.php");
     </ul>
   </nav>
   </header>
-
-  <?php
-  $sessionuid=$auth->getSessionUID($auth->getSessionHash());
-  ?>
   <div id="editor"></div>
   <iframe id="right" src="./problem.php?id=<?php echo $_GET['id'];?>" align="right" width="49%" frameBorder="0">인터넷 익스플로러를 사용하지 마세요</iframe>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
@@ -77,14 +74,11 @@ require("include/setlang.php");
       $extension = $ext_stmt->fetch()['extension'];
 	    $fp = fopen("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension, "r");
 	    $code = fread($fp,filesize("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension));
-    
-    
     ?>
-	  editor.insert(<?php echo json_encode($code);?>);
+	    editor.insert(<?php echo json_encode($code);?>);
     <?php
     }
     ?>
-
     function submitfunction(){
       var code = editor.getValue();
       var form = document.createElement("form");
@@ -177,7 +171,5 @@ require("include/setlang.php");
         return false;
     }
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <?php require("includejs.php");?>
 </body>

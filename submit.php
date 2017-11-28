@@ -11,30 +11,12 @@ if(!isset($_POST['code']) || !isset($_GET['id']) || !isset($_POST['lang'])){
 	echo "<script>window.location = \"./index.php\";</script>";
 	die();
 }
-function reform_lang($lang){
-	switch($lang){
-		case "C":
-		return ".c";
-		case "C++":
-		case "C++11":
-		case "C++14":
-		case "C++1z":
-		return ".cpp";
-		case "Java";
-		return ".java";
-		case "Python":
-		return ".py";
-		case "C#":
-		return ".cs";
-		default:
-		return "fuckyou";
-	}
-}
-
 $userdata=$auth->getUser($auth->getSessionUID($auth->getSessionHash()));
 $code = $_POST['code'];
 $language = $_POST['lang'];
-$extension = reform_lang($language);
+$ext_stmt = $db_conn->prepare("select extension from language where language=:lang");
+$ext_stmt->execute([":lang"=>$language]);
+$extension = $ext_stmt->fetch()['extension'];
 $problem_no = $_GET['id'];
 if(strlen($code) < 1){
 	echo "<script>alert('코드를 작성해주세요');</script>";
