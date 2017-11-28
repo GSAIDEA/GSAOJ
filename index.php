@@ -12,6 +12,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+    </script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     <?php require("importcss.php");?>
 
@@ -38,7 +44,9 @@
         <hr>
         <h3>개선요망</h3>
         <p>
-        FINUE씨 일하세요
+        FINUE씨 일하세요<br>
+        $ cos 2\theta = cos^2\theta - sin^2\theta $<br>
+        <strong>문제 목록에서 자신이 푼 문제를 표시하게 해주세요!ㅠㅠ</strong>
         </p>
         <hr>
         수정요망<br>

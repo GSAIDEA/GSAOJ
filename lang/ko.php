@@ -106,4 +106,11 @@
 	$MSG_EDITOR_PYTHON = "Python";
 	$MSG_EDITOR_CSHARP = "C#";
 	$MSG_EDITOR_C = "C";
+
+	$MSG_INFO_CORRECT = "정확한 풀이";
+	$MSG_INFO_EXPRESSION_ERROR = "표현에러";
+	$MSG_INFO_WRONG = "잘못된 풀이";
+	$MSG_INFO_TIME_EXCEED = "시간 초과";
+	$MSG_INFO_RUNTIME_ERROR = "실행중 에러";
+	$MSG_INFO_COMPILE_ERROR = "컴파일 에러";
 ?>

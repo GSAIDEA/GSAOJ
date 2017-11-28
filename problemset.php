@@ -114,12 +114,13 @@ else {
     $res=$db_conn->prepare("select problem_id, title, source, solved, submit from problem where title like :search order by problem_id asc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");
     $res->execute(array(":search"=>"%".$search_query."%"));
   }
-  else{$res = $db_conn->prepare("select problem_id, title, source, solved, submit from problem order by problem_id asc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");
+  else{$res = $db_conn->prepare("select problem_id, title, source, solved, submit, defunct from problem order by problem_id asc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");
     $res->execute();
   
   }
   $res->setFetchMode(PDO::FETCH_ASSOC);
   while($line = $res->fetch()) {
+    if($line['defunct'] != 0) continue;
     if($line['submit'] == 0) $temp_success_rate = 0;
     else $temp_success_rate = round(floatval($line['solved'])/floatval($line['submit'])*100, 3);
 ?>
