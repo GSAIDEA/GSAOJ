@@ -133,13 +133,15 @@ require("include/setlang.php");
 //          language = "Java";
           document.getElementById("select_code").innerHTML = "C++"
           break;
-        case 'Python':
-          alert("C/C++ 이외는 준비중입니다!");
-//          language = "Python";
-//          editor.getSession().setMode("ace/mode/python");
-//          document.getElementById("select_code").innerHTML = "Python"
-          document.getElementById("select_code").innerHTML = "C++"
-          break;
+        case 'Python2':
+        language = "Python2";
+        editor.getSession().setMode("ace/mode/python");
+        document.getElementById("select_code").innerHTML = "Python2"
+        break;
+        case 'Python3':
+        language = "Python3";
+        editor.getSession().setMode("ace/mode/python");
+        document.getElementById("select_code").innerHTML = "Python3";
         case 'C#':
           alert("C/C++ 이외는 준비중입니다!");
 //          $language = "C#";
