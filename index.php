@@ -33,7 +33,7 @@
         <hr>
         <h2><strong>주의사항</strong></h2>
         <p>
-        GITHUB에 업로드되었습니다. url은 <code><a href="https://github.com/GSAIDEA/GSAOJ">https://github.com/GSAIDEA/GSAOJ/</a></code>입니다.<br><strong>앞으로 패치 시마다 index.php와 Github의 Issue에 모두 변경사항을 작성해주시기 바랍니다.</strong><br>
+        github에 업로드되었습니다. url은 <code><a href="https://github.com/GSAIDEA/GSAOJ">https://github.com/GSAIDEA/GSAOJ/</a></code>입니다.<br><strong>앞으로 패치 시마다 index.php와 Github의 Issue에 모두 변경사항을 작성해주시기 바랍니다.</strong><br>
         채점이 되지 않는 언어로 제출하지 마세요!(예: Python, Java, C# 등)<br>
         </p>
         <hr>
