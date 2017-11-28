@@ -91,7 +91,7 @@
 if($err_problemset_page){
 ?>
           <div class='col-md-12'>
-            <h4 class='text-center'><?php echo $MSG_ERR_PROBLEMSET_PAGE; ?></h4>
+            <h4 class='text-center'><?php echo sprintf($MSG_ERR_NOT_FOUND, "페이지"); ?></h4>
           </div>
 <?php } 
 else {

@@ -92,7 +92,7 @@ for($i=0; $i<=$page_count; $i++) {
         <div class="row">
 <?php
 if($err_index_out_of_range) { ?>
-          <h3 class='text-center'>".$MSG_ERR_PROBLEMSET_PAGE."</h3>
+          <h3 class='text-center'><?php echo sprintf($MSG_ERR_NOT_FOUND, "페이지");?></h3>
 <?php }else{?>
 
           <table class='table table-striped table-sm'>

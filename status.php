@@ -101,9 +101,9 @@ else {
           <table class='table table-sm'>
             <thead>
               <tr>
-                <th><?php echo $MSG_STATUS_NUM; ?></th>
+                <th><?php echo $MSG_STATUS_SUBMITID; ?></th>
                 <th><?php echo $MSG_STATUS_USER; ?></th>
-                <th><?php echo $MSG_STATUS_PROBLEM_NUM; ?></th>
+                <th><?php echo $MSG_STATUS_PROBLEMID; ?></th>
                 <th><?php echo $MSG_STATUS_RESULT; ?></th>
                 <th><?php echo $MSG_STATUS_TIME_USAGE; ?></th>
                 <th><?php echo $MSG_STATUS_MEMORY_USAGE; ?></th>

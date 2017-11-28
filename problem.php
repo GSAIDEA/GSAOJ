@@ -12,8 +12,7 @@
 			$res = $db_conn->prepare("select * from problem where problem_id=".$request_id);
 			try {
 				$res->execute();
-				$res->setFetchMode(PDO::FETCH_ASSOC);
-				$err_problem_id = !($problem_data = $res->fetch());
+				$err_problem_id = !($problem_data = $res->fetch(PDO::FETCH_ASSOC));
 			} catch(PDOException $e) {
 				$err_problem_id = true;
 			}
@@ -56,7 +55,7 @@
 if($err_problem_id) { ?>
         <div class='row'>
           <div class='col-md-12'>
-            <h4 class='text-center'><?php echo $MSG_ERR_PROBLEM_ID; ?></h4>
+            <h4 class='text-center'><?php echo sprintf($MSG_ERR_NOT_FOUND, "ID"); ?></h4>
           </div>
         </div>
 <?php }
@@ -123,4 +122,4 @@ else { ?>
     <?php require("footer.php");?>
 
   </body>
-</html>
+

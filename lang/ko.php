@@ -25,9 +25,9 @@
 	$MSG_PROBLEM_TL = "시간제한";
 	$MSG_PROBLEM_ML = "메모리제한";
 
-	$MSG_STATUS_NUM = "제출 번호";
+	$MSG_STATUS_SUBMITID = "제출 번호";
 	$MSG_STATUS_USER = "사용자";
-	$MSG_STATUS_PROBLEM_NUM = "문제 번호";
+	$MSG_STATUS_PROBLEMID = "문제 번호";
 	$MSG_STATUS_RESULT = "결과";
 	$MSG_STATUS_TIME_USAGE = "시간";
 	$MSG_STATUS_MEMORY_USAGE = "메모리";
@@ -35,7 +35,6 @@
 	$MSG_STATUS_CODE_LENGTH = "코드 길이";
 	$MSG_STATUS_SUBMIT_DATE = "제출 시간";
 
-	$MSG_ERROR_INDEX_OUT_OF_RANGE = "옳지 않은 페이지 인덱스 값입니다.";
 	$MSG_RANKING = "랭킹";
 	$MSG_RANKING_RANK = "순위";
 	$MSG_RANKING_ID = "아이디";
@@ -67,11 +66,10 @@
 
 	$MSG_REG_PLZ = "회원 가입";
 	$MSG_REG_ID = "아이디";
-	$MSG_REG_ID_EX = "gsa1599";
+	$MSG_REG_ID_EX = "exampleid";
 	$MSG_REG_EMAIL = "이메일";
-	$MSG_REG_EMAIL_EX = "gsa1599@gsa.hs.kr";
+	$MSG_REG_EMAIL_EX = "exampleid@gsa.hs.kr";
 	$MSG_REG_PW = "비밀번호";
-	$MSG_REG_PW_EX = "00000000";
 	$MSG_REG_PW_VERIFY = "비밀번호 확인";
 	$MSG_REG_SUBMIT = "제출";
 
@@ -85,6 +83,7 @@
 	$MSG_ERR_PROBLEM_ID = "잘못된 문제 ID입니다. 잠시 후 문제 모음 페이지로 돌아갑니다.";
 	$MSG_ERR_NOT_LOGGEDIN = "먼저 로그인해 주세요.";
 	$MSG_ERR_WRONG_APPROACH = "잘못된 접근입니다.";
+	$MSG_ERR_NOT_FOUND = "%s을(를) 찾을 수 없습니다.";
 
 	$MSG_ADMIN = "관리자 페이지";
 	$MSG_ADMIN_ADD_NEWS = "뉴스 추가";
