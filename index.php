@@ -38,7 +38,7 @@
         <hr>
         <h3>개선요망</h3>
         <p>
-        프론트엔드 개발이 매우 지지부진한데, 개발자들은 본인은 디자이너가 아니라며 애써 외면하는 중입니다.
+        FINUE씨 일하세요
         </p>
         <hr>
         수정요망<br>
@@ -47,6 +47,12 @@
         <p>제출한 답안이 틀린 이유는 <code>/home/judge/problem/[problem_id]/submit/[submit_id]</code>에 잘 들어가 있습니다. 다만 현재 정답과 완전히 같은데도 틀리는 오류가 있는 것으로 보이고, 오류 내용을 웹서버로 출력하는 기능이 없습니다.</p>
         <p>
         </p>
+        <hr>
+        <h3>역할 분담</h3>
+        Frontend: FINUE<br>
+        Front~Backend: Rhythmstar<br>
+        Deep-Dark-end: appleseed<br>
+        Unknown: applist<br>
       </div>
 
     </main>
