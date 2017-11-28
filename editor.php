@@ -171,5 +171,5 @@ require("include/setlang.php");
         return false;
     }
     </script>
-    <?php require("includejs.php");?>
+    <?php require("importjs.php");?>
 </body>
