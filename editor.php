@@ -75,6 +75,7 @@ require("include/setlang.php");
 	    $fp = fopen("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension, "r");
 	    $code = fread($fp,filesize("/home/judge/problem/".$_GET['id']."/submit/".$_GET['submitid']."/Main".$extension));
     ?>
+      sel_lang($res['language']);
 	    editor.insert(<?php echo json_encode($code);?>);
     <?php
     }
