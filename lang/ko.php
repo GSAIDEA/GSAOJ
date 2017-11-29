@@ -25,6 +25,8 @@
 	$MSG_PROBLEM_TL = "시간제한";
 	$MSG_PROBLEM_ML = "메모리제한";
 
+	$MSG_RESULT_PENDING = "답안이 제출되었고 채점중입니다.";
+
 	$MSG_STATUS_SUBMITID = "제출 번호";
 	$MSG_STATUS_USER = "사용자";
 	$MSG_STATUS_PROBLEMID = "문제 번호";
@@ -79,11 +81,11 @@
 	$MSG_KEY = "활성화 키";
 	$MSG_ACTIVATE_SUBMIT = "활성화";
 
-	$MSG_ERR_PROBLEMSET_PAGE = "탐색 범위를 벗어났습니다. 잠시 후 1페이지로 돌아갑니다.";
-	$MSG_ERR_PROBLEM_ID = "잘못된 문제 ID입니다. 잠시 후 문제 모음 페이지로 돌아갑니다.";
 	$MSG_ERR_NOT_LOGGEDIN = "먼저 로그인해 주세요.";
 	$MSG_ERR_WRONG_APPROACH = "잘못된 접근입니다.";
 	$MSG_ERR_NOT_FOUND = "%s을(를) 찾을 수 없습니다.";
+	$MSG_ERR_NOT_ASSIGNED = "%s이(가) 지정되지 않았습니다.";
+	$MSG_ERR_PDOEXCEPTION = "DB에 잘못된 요청을 하였습니다.";
 
 	$MSG_ADMIN = "관리자 페이지";
 	$MSG_ADMIN_ADD_NEWS = "뉴스 추가";

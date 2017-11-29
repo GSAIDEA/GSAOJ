@@ -29,7 +29,7 @@
     <main role="main">
       <div class="jumbotron">
         <h1>GSA Online Judge</h1>
-        <p class="lead">v0.9.6 beta testing</p>
+        <p class="lead">v0.9.8 beta testing</p>
         <hr>
         <h2><strong>주의사항</strong></h2>
         <p>
@@ -39,28 +39,21 @@
         <hr>
         <h3>패치노트</h3>
         <p>
-        채점 프로세스를 다시 한번 개선하고, DB 구조를 개선했습니다.
+        Python2, Python3 채점이 가능합니다.<br>
+        채점 결과에 '표현 에러'가 추가되었습니다. 또한 출력 맨 마지막 공백과 무관하게 채점됩니다. 자세한 사항은 1001번 문제를 통해 확인하세요!
         </p>
         <hr>
         <h3>개선요망</h3>
         <p>
-        FINUE씨 일하세요<br>
-        $ cos 2\theta = cos^2\theta - sin^2\theta $<br>
-        <strong>문제 목록에서 자신이 푼 문제를 표시하게 해주세요!ㅠㅠ</strong>
-        </p>
-        <hr>
-        수정요망<br>
-        <code>userinfo.php</code><br>
-	오답이유/에러 출력 페이지(이름 미정)<br>
-        <p>제출한 답안이 틀린 이유는 <code>/home/judge/problem/[problem_id]/submit/[submit_id]</code>에 잘 들어가 있습니다. 다만 현재 정답과 완전히 같은데도 틀리는 오류가 있는 것으로 보이고, 오류 내용을 웹서버로 출력하는 기능이 없습니다.</p>
-        <p>
+        <code>result.php</code>, <code>userinfo.php</code><br>
+        Python의 경우 종종 runtime error를 stderr가 아닌 stdout로 뱉는 오류가 있습니다.<br>
         </p>
         <hr>
         <h3>역할 분담</h3>
         Frontend: FINUE<br>
-        Front~Backend: Rhythmstar<br>
-        Deep-Dark-end: appleseed<br>
-        Unknown: applist<br>
+        Front~Back~Deep-Dark-end: Rhythmstar<br>
+        Front~Deep-Dark-end: appleseed<br>
+        Problem Management: applist<br>
       </div>
 
     </main>

@@ -1,50 +1,24 @@
 <?php
 require_once("include/db_info.php");
 require_once("include/setlang.php");
-function array_sort($array, $on, $order=SORT_ASC)
-{
-    $new_array = array();
-    $sortable_array = array();
 
-    if (count($array) > 0) {
-        foreach ($array as $k => $v) {
-            if (is_array($v)) {
-                foreach ($v as $k2 => $v2) {
-                    if ($k2 == $on) {
-                       	$sortable_array[$k] = $v2;
-               	    }
-       	        }
-            } else {
-               	$sortable_array[$k] = $v;
-       	    }
-        }
-       	switch ($order) {
-            case SORT_ASC:
-		asort($sortable_array);
-		break;
-            case SORT_DESC:
-               	arsort($sortable_array);
-		break;
-	}
-
-        foreach ($sortable_array as $k => $v) {
-            $new_array[$k] = $array[$k];
-       	}
-    }
-
-    return $new_array;
+if(!isset($_GET['page'])) {
+	$request_page = 0;
 }
-
-$res = $db_conn->query("select uid, submit, solved_once, sangme, solved from userdata order by solved_once desc, submit asc;");
-$result = $res->fetchAll(PDO::FETCH_ASSOC);
-array_sort($result, 'solved', SORT_DESC);
-$row_count = count($result);
-$page_count = floor(($row_count-1)/50);
-if($page_count < 0){
-	$page_count = 0;
+else {
+	$request_page = $_GET['page'];
 }
-$page = isset($_GET['page']) ? $_GET['page'] : 0;
-$err_index_out_of_range = $page_count < $page || $page < 0;
+$res = $db_conn->prepare("select count(*) as row_count from userdata;");
+$res->execute();
+$row_count = $res->fetch(PDO::FETCH_ASSOC)['row_count'];
+if($row_count == 0) $page_count = 0;
+else $page_count = floor(($row_count-1)/$PAGE_LINE);
+if($page_count < $request_page || $request_page < 0) {
+	echo "<script type='text/javascript'>alert(); window.history.back();</script>";
+	die();
+}
+$res = $db_conn->prepare("select userid, sangme, submit, solved_once from userdata left join users on userdata.uid = users.id order by solved_once desc, submit asc limit ".($request_page*$PAGE_LINE).", ".$PAGE_LINE.";");
+$res->execute();
 ?>
 <!doctype html>
 <html lang="en">
@@ -57,9 +31,7 @@ $err_index_out_of_range = $page_count < $page || $page < 0;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?php if($err_index_out_of_range) {?>
-    <meta http-equiv='refresh' content='3; url=./rank.php'>
-    <?php } require("importcss.php");?>
+    <?php require("importcss.php");?>
 
   </head>
   <body>
@@ -77,24 +49,20 @@ $err_index_out_of_range = $page_count < $page || $page < 0;
           <nav class="mx-auto">
             <ul class="pagination">
               <li class="page-item"><a class="page-link" href="rank.php">&lt;&lt;</a></li>
+              <li class="page-item <?php if($request_page == 0) echo "active";?>"><a class="page-link" href="rank.php">1</a></li>
 <?php
-for($i=0; $i<=$page_count; $i++) {
-	if($i == $page) $temp_active = " active";
-	else $temp_active = ""; ?>
-              <li class='page-item<?php echo $temp_active;?>'><a class='page-link' href="rank.php?page=<?php echo $i;?>"><?php echo ($i+1);?></a></li>
+for($i=1; $i<=$page_count; $i++) {
+	if($i == $request_page) $temp_active = " active";
+	else $temp_active = "";
+?>
+              <li class="page-item<?php echo $temp_active;?>"><a class="page-link" href="rank.php?page=<?php echo $i;?>"><?php echo $i+1;?></a></li>
 <?php }?>
-
-              <li class='page-item'><a class='page-link' href='rank.php?page=<?php echo $page_count;?>'>&gt;&gt;</a></li>
+              <li class="page-item"><a class="page-link" href="rank.php?page=<?php echo $page_count;?>">&gt;&gt;</a></li>
             </ul>
           </nav>
         </div>
 
         <div class="row">
-<?php
-if($err_index_out_of_range) { ?>
-          <h3 class='text-center'><?php echo sprintf($MSG_ERR_NOT_FOUND, "페이지");?></h3>
-<?php }else{?>
-
           <table class='table table-striped table-sm'>
             <thead>
               <tr>
@@ -108,30 +76,26 @@ if($err_index_out_of_range) { ?>
             </thead>
             <tbody>
 <?php
-for($i=0+50*$page; $i<50+50*$page; $i++) {
-    if($i>=count($result))break;
-    $success_rate = $result[$i]['submit']==0 ? 0 : $result[$i]['solved']/$result[$i]['submit'] * 100;
+$res = $db_conn->prepare("select userid, sangme, submit, solved, solved_once, isactive from userdata left join users on userdata.uid = users.id order by solved_once desc, submit asc limit ".($request_page*$PAGE_LINE).", ".$PAGE_LINE.";");
+$res->execute();
+$i = 0;
+while($line = $res->fetch(PDO::FETCH_ASSOC)) {
+	$i++;
+	if($line['isactive'] == 0) continue;
+	if($line['submit'] == 0) $temp_success_rate = 0;
+	else $temp_success_rate = round(floatval($line['solved'])/floatval($line['submit'])*100, 3)
 ?>
               <tr>
-		<th><?php echo $i+1;?></th>
-		<th><?php
-			$getuserid = $db_conn->prepare("select userid from users where id=:id");
-			$getuserid->execute([":id"=> $result[$i]['uid']]);
-			$userid = $getuserid->fetch(PDO::FETCH_ASSOC);
-			echo "<a href=\"./userinfo.php?id=".$result[$i]['uid']."\">".$userid['userid']."</a>";
-		    ?></th>
-<?php
-    foreach($result[$i] as $key=>$val){
-	if($key != 'uid' && $key != 'solved'){
-?>
-                <th><?php echo $val; ?></th>
-<?php }}?>
-                <th><?php echo sprintf("%.2f", $success_rate);?>%</th>
+                <th><?php echo $i;?></th> 
+                <th><?php echo $line['userid'];?></th>
+                <th><?php echo $line['submit'];?></th>
+                <th><?php echo $line['solved_once'];?></th>
+                <th><?php echo htmlentities($line['sangme']);?></th>
+                <th><?php echo sprintf("%.2f", $temp_success_rate);?>%</th>
               </tr>
 <?php }?>
             </tbody>
           </table>
-<?php }?>
         </div>
       </div>
     </main>

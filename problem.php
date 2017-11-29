@@ -19,7 +19,7 @@
 		}
 	}
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
 
@@ -96,12 +96,12 @@ else { ?>
           <div class='col-md-6 margin-bottom-50'>
             <h4><?php echo $MSG_PROBLEM_INPUT_EX;?></h4>
             <hr>
-            <p><?php echo $problem_data['sample_input'];?></p>
+            <p><code><?php echo $problem_data['sample_input'];?></code></p>
           </div>
           <div class='col-md-6 margin-bottom-50'>
             <h4><?php echo $MSG_PROBLEM_OUTPUT_EX;?></h4>
             <hr>
-            <p><?php echo $problem_data['sample_output'];?></p>
+            <p><code><?php echo $problem_data['sample_output'];?></code></p>
           </div>
           <div class='col-md-12 margin-bottom-50'>
             <h4><?php echo $MSG_PROBLEM_HINT;?></h4>
@@ -122,4 +122,4 @@ else { ?>
     <?php require("footer.php");?>
 
   </body>
-
+</html>
