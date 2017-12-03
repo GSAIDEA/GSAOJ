@@ -20,7 +20,9 @@ else{
 $row_count = $res->fetch(PDO::FETCH_ASSOC)['row_count'];
 if($row_count == 0) $page_count = 0;
 else $page_count = floor(($row_count-1)/$PAGE_LINE);
-$err_problemset_page = $page_count < $request_page || $request_page < 0;
+if($page_count < $request_page || $request_page < 0) {
+	echo "<script type='text/javascript'>alert('".sprintf($MSG_ERR_NOT_FOUND, "페이지")."'); window.history.back()</script>";
+}
 ?>
 <!doctype html>
 <html lang="en">

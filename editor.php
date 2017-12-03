@@ -1,9 +1,10 @@
 <?php
-require("include/db_info.php");
-require("include/include_auth.php");
+require_once("include/db_info.php");
+require_once("include/setlang.php");
+require_once("include/include_auth.php");
 if(!$auth->islogged()){
-  echo "<script>window.location = \"./login.php\";</script>";
-  die();
+	echo "<script>window.location = \"./login.php\";</script>";
+	die();
 }
 $sessionuid=$auth->getSessionUID($auth->getSessionHash());
 if(isset($_GET['submitid'])){
@@ -11,7 +12,7 @@ if(isset($_GET['submitid'])){
 	$stmt->execute([":sub"=>$_GET['submitid']]);
 	$res = $stmt->fetch();
 	if($res['uid'] != $auth->getSessionUID($auth->getSessionHash())){
-		echo "<script>alert(\"볼 권한이 없습니다.\"); window.history.back();</script>";
+		echo "<script>alert($MSG_WRONG_APPROACH); window.history.back();</script>";
 		die();
 	}
 }

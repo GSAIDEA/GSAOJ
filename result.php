@@ -57,20 +57,59 @@ try {
         <div class="row">
 <?php switch($row['state']) {
 case "pending": ?>
-          <div class="alert alert-secondary"><?php echo $MSG_RESULT_PENDING;?></div>
+          <div class="col-md-12">
+            <div class="alert alert-secondary"><?php echo $MSG_RESULT_PENDING;?></div>
+          </div>
 <?php break; case "compile error": ?>
-          <div class="alert alert-warning">
+          <div class="col-md-12">
+            <div class="alert alert-warning">
 <?php
 $cperrpath = "/home/judge/problem/".$row['problem_id']."/submit/".$row['submit_id']."/compile_error.txt";
 $cperrfile = fopen($cperrpath, "r");
 $cperrcontent = fread($cperrfile, filesize($cperrpath));
 fclose($cperrfile);
-echo $cperrcontent;
-?></div>
+echo str_replace("\n", "<br>", $cperrcontent);
+?></div></div>
 <?php break; case "runtime error": ?>
+          <div class="col-md-12">
+            <div class="alert alert-warning">
+<?php
+$rterrpath = "/home/judge/problem/".$row['problem_id']."/submit/".$row['submit_id']."/";
+$i = 1;
+while(is_file($rterrpath.$i.".error.out")) $i++;
+$rterrpath = $rterrpath.($i-1).".error.out";
+$rterrfile = fopen($rterrpath, "r");
+$rterrcontent = fread($rterrfile, filesize($rterrpath));
+fclose($rterrfile);
+echo str_replace("\n", "<br>", $rterrcontent);
+?></div></div>
 <?php break; case "expression error": ?>
+          <div class="col-md-12">
+            <div class="alert alert-warning">
+<?php echo $MSG_RESULT_EXPRERR;?>
+          </div></div>
 <?php break; case "correct": ?>
+          <div class="col-md-12">
+            <div class="alert alert-success">
+<?php
+$correctpath = "/home/judge/problem/".$row['problem_id']."/submit/".$row['submit_id']."/";
+$i = 1;
+while(is_file($correctpath.$i.".error.out")) {
+	$temppath = $correctpath.$i.".error.out";
+	$tempfile = fopen($temppath, "r");
+	$tempcontent = fread($tempfile, filesize($temppath));
+	fclose($tempfile);
+	echo $i.": ".$tempcontent."<br>";
+	$i++;
+}
+?>
+          </div></div>
 <?php break; case "wrong": ?>
+          <div class="col-md-12">
+            <div class="alert alert-danger">
+<?php echo $MSG_RESULT_WRONG;?>
+          </div></div>
+<?php break; case "time limit exceeded": ?>
 <?php break;} ?>
         </div>
       </div>

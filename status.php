@@ -1,43 +1,45 @@
 <?php
-	require_once("include/db_info.php");
-	require_once("include/setlang.php");
-	require_once("include/include_auth.php");
-	if(isset($_GET['uid'])){
-		$uid=$_GET['uid'];
-	}
-	if(isset($_GET['pid'])){
-		$pid=$_GET['pid'];
-	}
-	$sessionuid=$auth->getSessionUID($auth->getSessionHash());
-	if(!isset($_GET['page'])) {
-		$request_page = 0;
-	}
-	else {
-		$request_page = $_GET['page'];
-	}
-	if(!isset($uid)&&!isset($pid)){
-		$res = $db_conn->prepare("select count(*) as row_count from submit;");
-		$res->execute();
-	}
-	else if(!isset($uid)){
-		$res = $db_conn->prepare("select count(*) as row_count from submit where problem_id = ?;");
-		$res->execute(array($pid));
-	}
-	else if(!isset($pid)){
-		$res = $db_conn->prepare("select count(*) as row_count from submit where uid = ?;");
-		$res->execute(array($uid));
-	}
-	else{
-		$res = $db_conn->prepare("select count(*) as row_count from submit where uid = ? and problem_id = ?;");
-		$res->execute(array($uid,$pid));
-	}
-	$res->setFetchMode(PDO::FETCH_ASSOC);
-	$row_count = $res->fetch()['row_count'];
+require_once("include/db_info.php");
+require_once("include/setlang.php");
+require_once("include/include_auth.php");
+if(isset($_GET['uid'])){
+	$uid=$_GET['uid'];
+}
+if(isset($_GET['pid'])){
+	$pid=$_GET['pid'];
+}
+$sessionuid=$auth->getSessionUID($auth->getSessionHash());
+if(!isset($_GET['page'])) {
+	$request_page = 0;
+}
+else {
+	$request_page = $_GET['page'];
+}
+if(!isset($uid)&&!isset($pid)){
+	$res = $db_conn->prepare("select count(*) as row_count from submit;");
+	$res->execute();
+}
+else if(!isset($uid)){
+	$res = $db_conn->prepare("select count(*) as row_count from submit where problem_id = ?;");
+	$res->execute(array($pid));
+}
+else if(!isset($pid)){
+	$res = $db_conn->prepare("select count(*) as row_count from submit where uid = ?;");
+	$res->execute(array($uid));
+}
+else{
+	$res = $db_conn->prepare("select count(*) as row_count from submit where uid = ? and problem_id = ?;");
+	$res->execute(array($uid,$pid));
+}
+$res->setFetchMode(PDO::FETCH_ASSOC);
+$row_count = $res->fetch()['row_count'];
 
-	if($row_count == 0) $page_count = 0;
-	else $page_count = floor(($row_count-1)/$PAGE_LINE);
-
-	$err_status_page = $page_count < $request_page || $request_page < 0;
+if($row_count == 0) $page_count = 0;
+else $page_count = floor(($row_count-1)/$PAGE_LINE);
+if($page_count < $request_page || $request_page < 0) {
+	echo "<script type='text/javascript'>alert('".sprintf($MSG_ERR_NOT_FOUND, "페이지")."'); window.history.back();</script>";
+	die();
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -50,12 +52,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!--meta http-equiv="refresh" content="3;url=#"-->
-    <?php if($err_status_page) { ?>
-        <meta http-equiv='refresh' content='3; url=./status.php'>
-    <?php
-    }
-    require("importcss.php");
-    ?>
+    <?php require("importcss.php");?>
 
   </head>
   <body>
@@ -89,15 +86,6 @@
         </div>
 
         <div class="row">
-<?php
-if($err_status_page){
-?>
-          <div class='col-md-12'>
-            <h4 class='text-center'><?php echo $MSG_ERR_PROBLEMSET_PAGE; ?></h4>
-          </div>
-<?php } 
-else {
-?>
           <table class='table table-sm'>
             <thead>
               <tr>
@@ -138,14 +126,36 @@ else {
 ?>
               <tr>
                 <th><?php echo $line['submit_id']; ?></th>
-                <th><a href='./userinfo.php?id=<?php echo $line['uid']; ?>'><?php echo $user['userid']; ?></a></th>
-                <th><a href='./problem.php?id=<?php echo $line['problem_id']?>'><?php echo $line['problem_id']; ?></th>
-                <th><a href='./result.php?submitid=<?php echo $line['submit_id'];?>'><?php echo $line['state']; ?></th>
+                <th><a href='./userinfo.php?uid=<?php echo $line['uid']; ?>'><?php echo $user['userid']; ?></a></th>
+                <th><a href='./problem.php?id=<?php echo $line['problem_id']?>'><?php echo $line['problem_id']; ?></a></th>
+<?php
+switch($line['state']) {
+	case "pending":
+		$badge_type = "secondary";
+		break;
+	case "compile error": case "runtime error": case "expression error":
+		$badge_type = "warning";
+		break;
+	case "time limit exceeded":
+		$badge_type = "dark";
+		break;
+	case "wrong":
+		$badge_type = "danger";
+		break;
+	case "correct":
+		$badge_type = "success";
+		break;
+}
+if($line['uid'] == $auth->getSessionUID($auth->getSessionHash())) {?>
+                <th><a href="./result.php?submitid=<?php echo $line['submit_id'];?>" class="badge badge-<?php echo $badge_type;?>"><?php echo $line['state']; ?></a></th>
+<?php } else {?>
+                <th><span class="badge badge-<?php echo $badge_type;?>"><?php echo $line['state'];?></span></th>
+<?php }?>
                 <th><?php echo $line['time_usage']; ?>MS</th>
                 <th><?php echo $line['memory_usage'] ?>KB</th>
                 <th><?php echo $line['code_length'] ?>B</th>
 <?php if($line['uid']==$auth->getSessionUID($auth->getSessionHash())){?>
-		<th><a href='./editor.php?id=<?php echo $line['problem_id'];?>&submitid=<?php echo $line['submit_id'];?>'><?php echo $line['language'] ?></th>
+		<th><a href='./editor.php?id=<?php echo $line['problem_id'];?>&submitid=<?php echo $line['submit_id'];?>'><?php echo $line['language'] ?></a></th>
 <?php }
 else {?>
 		<th><?php echo $line['language'] ?></th>
@@ -155,7 +165,6 @@ else {?>
 <?php } ?>
             </tbody>
           </table>
-<?php } ?>
         </div>
       </div>
     </main>

@@ -26,6 +26,8 @@
 	$MSG_PROBLEM_ML = "메모리제한";
 
 	$MSG_RESULT_PENDING = "답안이 제출되었고 채점중입니다.";
+	$MSG_RESULT_EXPRERR = "출력 형식이 잘못되었습니다.<br>불필요한 공백이나 탭, 개행 문자를 출력했는지 확인하세요.";
+	$MSG_RESULT_WRONG = "틀렸습니다.";
 
 	$MSG_STATUS_SUBMITID = "제출 번호";
 	$MSG_STATUS_USER = "사용자";

@@ -47,6 +47,7 @@
         <p>
         <code>result.php</code>, <code>userinfo.php</code><br>
         Python의 경우 종종 runtime error를 stderr가 아닌 stdout로 뱉는 오류가 있습니다.<br>
+        프로그램 실행 시간, 메모리가 표시되지 않습니다.
         </p>
         <hr>
         <h3>역할 분담</h3>

@@ -63,7 +63,7 @@ for($i=1; $i<=$page_count; $i++) {
         </div>
 
         <div class="row">
-          <table class='table table-striped table-sm'>
+          <table class='table table-sm'>
             <thead>
               <tr>
 		<th><?php echo $MSG_RANKING_RANK;?></th>
@@ -86,8 +86,12 @@ while($line = $res->fetch(PDO::FETCH_ASSOC)) {
 	else $temp_success_rate = round(floatval($line['solved'])/floatval($line['submit'])*100, 3)
 ?>
               <tr>
-                <th><?php echo $i;?></th> 
-                <th><?php echo $line['userid'];?></th>
+                <th><?php echo $i;?></th>
+<?php $getuid=$db_conn->prepare("select id from users where userid = ?");
+$getuid->execute(array($line['userid']));
+$uid=$getuid->fetch(PDO::FETCH_ASSOC);
+?>
+                <th><a href='./userinfo.php?uid=<?php echo $uid['id'];?>'><?php echo $line['userid'];?></a></th>
                 <th><?php echo $line['submit'];?></th>
                 <th><?php echo $line['solved_once'];?></th>
                 <th><?php echo htmlentities($line['sangme']);?></th>
