@@ -25,7 +25,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?php if($err_user_id) echo "    <meta http-equiv='refresh' content='3; url=./problemset.php'>";?>
+    <?php if($err_user_id) echo "    <meta http-equiv='refresh' content='3; url=./index.php'>";?>
     <?php require("importcss.php");?>
 
   </head>
@@ -36,7 +36,7 @@
       <div class="row margin-bottom-20"></div>
 <?php if($err_user_id){ ?>
       <div class="row">
-        <h4>err</h4>
+        <h4>Error occured</h4>
       </div>
 <?php }
 else{ ?>
@@ -85,9 +85,12 @@ else{ ?>
               <td><?php echo $line['cperr'];?></td>
             </tr>
           </table>
+          <canvas id="summary"></canvas>
         </div>
         <div class="col-md-8">
-          <canvas id="summary"></canvas>
+          <?php 
+          
+          ?>
         </div>
 
       </div>
