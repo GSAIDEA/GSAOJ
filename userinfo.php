@@ -89,7 +89,12 @@ else{ ?>
         </div>
         <div class="col-md-8">
           <?php 
+
+          #TODO: get completed problem
           
+          foreach ($variable as $key => $value) {
+            echo "<a href='./problem.php?id=".$value."'>".$value."</a>\n";
+          }
           ?>
         </div>
 
