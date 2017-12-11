@@ -77,7 +77,7 @@ if($page_count < $request_page || $request_page < 0) {
                 if($i == $request_page) $temp_active = " active";
                 else $temp_active = "";?>
               <li class='page-item<?php echo $temp_active; ?>'><a class='page-link' href='status.php?page=<?php echo $i;?>'><?php echo $i+1;?></a></li>
-              <?php 
+              <?php
               }
             ?>
               <li class='page-item'><a class='page-link' href='status.php?page=<?php echo $page_count;?>'>&gt;&gt;</a></li>
@@ -132,24 +132,29 @@ if($page_count < $request_page || $request_page < 0) {
 switch($line['state']) {
 	case "pending":
 		$badge_type = "secondary";
+		$text_color = "#868e96";
 		break;
 	case "compile error": case "runtime error": case "expression error":
 		$badge_type = "warning";
+		$text_color = "#ffc107";
 		break;
 	case "time limit exceeded":
 		$badge_type = "dark";
+		$text_color = "#343a40";
 		break;
 	case "wrong":
 		$badge_type = "danger";
+		$text_color = "#dc3545";
 		break;
 	case "correct":
 		$badge_type = "success";
+		$text_color = "#28a745";
 		break;
 }
 if($line['uid'] == $auth->getSessionUID($auth->getSessionHash())) {?>
-                <th><a href="./result.php?submitid=<?php echo $line['submit_id'];?>" class="badge badge-<?php echo $badge_type;?>"><?php echo $line['state']; ?></a></th>
+                <th><a href="./result.php?submitid=<?php echo $line['submit_id'];?>" class="badge badge-<?php echo $badge_type;?>" style="font-size: 1rem"><?php echo $line['state']; ?></a></th>
 <?php } else {?>
-                <th><span class="badge badge-<?php echo $badge_type;?>"><?php echo $line['state'];?></span></th>
+		<th><p style="color: <?php echo $text_color;?>; margin-bottom: 0; padding-bottom: 0;"><?php echo $line['state'];?></p></th>
 <?php }?>
                 <th><?php echo $line['time_usage']; ?>MS</th>
                 <th><?php echo $line['memory_usage'] ?>KB</th>

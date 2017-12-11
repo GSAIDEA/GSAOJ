@@ -1,5 +1,0 @@
-var ctxP = document.getElementById("summary").getContext('2d');
-var pieChart = new Chart(ctxP, {
-	type: 'pie',
-	data: {
-		labels: ["정확한 풀이", "오답", "시간 초과", "런타임 에러", "컴파일 에러", "표현 오류"

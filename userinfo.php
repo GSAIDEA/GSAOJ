@@ -45,7 +45,7 @@ else{ ?>
 <?php	  $user=$auth->getUser($line['uid']); ?>
 	  <h2 class='text-center margin-bottom-10'><?php echo $user['userid'];?></h2>
 	  <br>
-	  <blockquote class='text-center'><p><?php echo $line['sangme'];?></p></blockquote>
+	  <blockquote class='text-center'><p style="padding-left: 0"><?php echo $line['sangme'];?></p></blockquote>
 	</div>
       </div>
       <hr style="margin-bottom : 0">
