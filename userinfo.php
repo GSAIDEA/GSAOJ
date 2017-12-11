@@ -48,7 +48,6 @@ else{ ?>
 	  <blockquote class='text-center'><p style="padding-left: 0"><?php echo $line['sangme'];?></p></blockquote>
 	</div>
       </div>
-      <hr style="margin-bottom : 0">
       <div class="row">
         <div class="col-md-4">
           <table class="table table-sm">
@@ -88,12 +87,17 @@ else{ ?>
           <canvas id="summary"></canvas>
         </div>
         <div class="col-md-8">
-          <?php 
+          <div class="row lightgray margin-bottom-10">
+          <p class="userinfo_problem_header">해결한 문제</p>
+          </div>
+          <?php
 
           #TODO: get completed problem
-          
-          foreach ($variable as $key => $value) {
-            echo "<a href='./problem.php?id=".$value."'>".$value."</a>\n";
+          $get_problem = $db_conn->prepare("select problem_id from solved left join submit on solved.submit_id=submit.submit_id where submit.uid=:uid group by problem_id;");
+          $get_problem->execute([":uid" => $uid]);
+          $problems = $get_problem->fetchAll();
+          foreach ($problems as $key => $value) {
+            echo "<a href='./problem.php?id=".$value[0]."'>".$value[0]."</a><span class=\"splicer\"></span>\n";
           }
           ?>
         </div>
