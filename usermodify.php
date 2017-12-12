@@ -15,43 +15,72 @@
     <meta name="author" content="">
 
     <?php require("importcss.php");?>
-
+    <?php
+    if(!$auth->islogged()){
+      echo "<script>window.location = \"./login.php\";</script>";
+      die();
+    }
+    ?>
   </head>
   <body>
     <!-- navbar -->
     <?php require("nav.php");
-    if(isset($_POST['id']) && isset($_POST['pw']) && isset($_POST['pwvf']) && isset($_POST['email'])){
-        $id = $_POST['id'];
-        $email = $_POST['email'];
-        $pw = $_POST['pw'];
-        $pwvf = $_POST['pwvf'];
-        $result = $auth->register($id, $email, $pw, $pwvf);
-        if($result['error']){
-            echo "<script>alert(\"".$result['message']."\");</script>";
+    $uid = $auth->getSessionUID($auth->getSessionHash());
+    $user = $auth->getUser($uid);
+    $stmt_userdata = $db_conn->prepare("select sangme from userdata where uid=:uid");
+    $stmt_userdata->execute([":uid"=>$uid]);
+    $sangme = $stmt_userdata->fetch()['sangme'];
+    if(isset($_POST['motopw'])){
+      try{
+        $motopw = $_POST['motopw'];
+        if(!$auth->comparePasswords($uid, $motopw)({
+          echo "<script>alert(\"비밀번호가 틀립니다.\");</script>";
         }
-        else{
-            try{
-	        $getuid = $db_conn->prepare("select id from users where userid=:id");
-	        $getuid->execute([':id' => $id]);
-	        $uid = $getuid->fetch(PDO::FETCH_ASSOC);
-                $res = $db_conn->prepare("INSERT INTO userdata (`uid`) VALUES (:uid)");
-                $res -> execute([':uid'=>$uid['id']]);
-            } catch(PDOException $e){
-                echo $e->getMessage();
+	      else {
+          $db_conn->beginTransaction();
+          $stmt_update_sangme = $db_conn->prepare("update userdata set sangme=:sangme where uid=:uid");
+          $stmt_update_sangme->execute([":sangme" => $_POST['sangme'], ":uid" => $uid]);
+          if(isset($_POST['pw']) && isset($_POST['pwvf'])){
+            $newpw = $_POST['pw'];
+            $newpwvf = $_POST['pwvf'];
+            $result = $auth->changePassword($uid, $motopw, $newpw, $newpwvf);
+            if($result['error']){
+              echo "<script>alert(\"".$result['message']."\")</script>";
             }
-	    echo "<script type='text/javascript'>window.location = \"./activate.php\";</script>";
-	}
+            else{
+              $db_conn->commit();
+              echo "<script>alert(\"".$result['message']."\")</script>";
+              echo "<script type='text/javascript'>window.location = \"./userinfo.php?uid=".$uid['id']."\";</script>";
+              die();
+            }
+          }
+          else{
+            $db_conn->commit();
+            echo "<script type='text/javascript'>window.location = \"./userinfo.php?uid=".$uid['id']."\";</script>";            
+            die();
+          }
+        }
+      } catch(PDOException $e){
+        $db_conn->rollBack();
+        die();      
+#        echo $e->getMessage();
+      }
     }
+
     ?>
 
     <main role="main">
       <div class="container">
-        <form class="form-register" action="register.php" method="post">
+        <form class="form-modify" action="usermodify.php" method="post">
           <h2 class="margin-bottom-30"><?php echo $MSG_MODIFY;?></h2>
-          <label for="inputId"><?php echo $MSG_MODIFY_SANGME;?></label>
-          <input type="text" name="id" class="form-control margin-bottom-20" value="" required>
+          <label for="userid"><?php echo $MSG_LOGIN_ID;?></label>
+          <input type="text" name="id" class="form-control margin-bottom-20" value="<?php echo $user['userid'];?>" disabled>
+          <label for="modifySangme"><?php echo $MSG_MODIFY_SANGME;?></label>
+          <input type="text" name="sangme" class="form-control margin-bottom-20" value="<?php echo $sangme;?>">
+          <label for="inputPassword"><?php echo $MSG_MOTO_PW;?></label>
+          <input type="password" name="motopw">
           <label for="inputPassword"><?php echo $MSG_MODIFY_PW;?></label>
-          <input type="password" name="pw" class="form-control margin-bottom-20" onkeyup="validatePwd();" required>
+          <input type="password" name="pw" class="form-control margin-bottom-20" onkeyup="validatePwd();" placeholder="<?php echo $MSG_NOT_CHANGE_PW;?>">
           <label><?php echo $MSG_REG_PW_STRENGTH;?></label>
 	  <div class="progress">
 	    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100" id="strength"></div>
