@@ -17,17 +17,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-
     <title><?php echo $OJ_NAME;?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <?php if($err_user_id) echo "    <meta http-equiv='refresh' content='3; url=./index.php'>";?>
     <?php require("importcss.php");?>
-
   </head>
   <body>
     <!-- navbar -->
@@ -43,8 +40,7 @@ else{ ?>
       <div class="row">
 	<div class='col-md-12 margin-bottom-20'>
 <?php	  $user=$auth->getUser($line['uid']); ?>
-	  <h2 class='text-center margin-bottom-10'><?php echo $user['userid'];?></h2>
-	  <br>
+	  <h2 class='text-center margin-bottom-20'><?php echo $user['userid'];?></h2>
 	  <blockquote class='text-center'><p style="padding-left: 0"><?php echo $line['sangme'];?></p></blockquote>
 	</div>
       </div>
@@ -91,8 +87,6 @@ else{ ?>
           <p class="userinfo_problem_header">해결한 문제</p>
           </div><hr>
           <?php
-
-          #TODO: get completed problem
           $get_problem = $db_conn->prepare("select problem_id from solved left join submit on solved.submit_id=submit.submit_id where submit.uid=:uid group by problem_id;");
           $get_problem->execute([":uid" => $uid]);
           $problems = $get_problem->fetchAll();
