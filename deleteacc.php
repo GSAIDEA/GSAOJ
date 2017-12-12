@@ -25,14 +25,10 @@
         echo "<script type='text/javascript'>alert('".$MSG_ERR_NOT_LOGGEDIN."');</script>";
 
         echo "<script type='text/javascript'>window.location = \"./index.php\";</script>";
+	die();
     }
 
     if(isset($_POST['passwd'])){
-	if(!$auth->isLogged()){
-	    header('HTTP/1.0 403 Forbidden');
-	    echo $MSG_ERR_NOT_LOGGEDIN;
-	    die();
-	}
 	$uid = $auth->getSessionUID($auth->getSessionHash());
 	$passwd = $_POST['passwd'];
         $result = $auth->deleteUser($uid, $passwd);

@@ -110,6 +110,21 @@ while(is_file($correctpath.$i.".error.out")) {
 <?php echo $MSG_RESULT_WRONG;?>
           </div></div>
 <?php break; case "time limit exceeded": ?>
+          <div class="col-md-12">
+            <div class="alert alert-secondary">
+<?php
+$correctpath = "/home/judge/problem/".$row['problem_id']."/submit/".$row['submit_id']."/";
+$i = 1;
+while(is_file($correctpath.$i.".error.out")) {
+	$temppath = $correctpath.$i.".error.out";
+	$tempfile = fopen($temppath, "r");
+	$tempcontent = fread($tempfile, filesize($temppath));
+	fclose($tempfile);
+	echo $i.": ".$tempcontent."<br>";
+	$i++;
+}
+?>
+          </div></div>
 <?php break;} ?>
         </div>
       </div>

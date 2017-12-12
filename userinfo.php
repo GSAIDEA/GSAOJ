@@ -87,9 +87,9 @@ else{ ?>
           <canvas id="summary"></canvas>
         </div>
         <div class="col-md-8">
-          <div class="row lightgray margin-bottom-10">
+          <div class="row margin-bottom-10">
           <p class="userinfo_problem_header">해결한 문제</p>
-          </div>
+          </div><hr>
           <?php
 
           #TODO: get completed problem
