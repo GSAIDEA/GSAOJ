@@ -78,14 +78,14 @@
 	$MSG_REG_PW_VERIFY = "비밀번호 확인";
 	$MSG_REG_SUBMIT = "제출";
 
-	$MSG_NAV_MODIFY = "내 정보 수정"
+	$MSG_NAV_MODIFY = "내 정보 수정";
 	$MSG_MODIFY = "정보 수정";
 	$MSG_MODIFY_SANGME = "상태 메세지";
 	$MSG_MOTO_PW = "기존 비밀번호";
 	$MSG_MODIFY_PW = "새로운 비밀번호";
 	$MSG_MODIFY_PW_VERIFY = "새로운 비밀번호 확인";
 	$MSG_MODIFY_SUBMIT = "수정";
-	$MSG_NOT_CHANGE_PW = "비밀번호 변경을 원하지 않으면 빈칸으로 두십시오"
+	$MSG_NOT_CHANGE_PW = "비밀번호 변경을 원하지 않으면 빈칸으로 두십시오";
 
 	$MSG_DELETE_ACCOUNT = "계정 삭제";
 
