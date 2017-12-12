@@ -41,15 +41,15 @@
         <p>
         Python2, Python3 채점이 가능합니다.<br>
         채점 결과에 '표현 에러'가 추가되었습니다. 또한 출력 맨 마지막 공백과 무관하게 채점됩니다. 자세한 사항은 1001번 문제를 통해 확인하세요!<br>
-	userinfo.php가 만들어졌습니다.
+	userinfo.php가 만들어졌습니다.<br>
+	개인정보 수정 페이지가 완성되었습니다.
         </p>
         <hr>
         <h3>개선요망</h3>
         <p>
         <code>result.php</code>, <code>userinfo.php</code><br>
         Python의 경우 종종 runtime error를 stderr가 아닌 stdout로 뱉는 오류가 있습니다.<br>
-        프로그램 실행 시간, 메모리가 표시되지 않습니다.<br>
-	개인정보 수정 페이지도 만드세요
+        프로그램 실행 시간, 메모리가 표시되지 않습니다.
         </p>
         <hr>
         <h3>역할 분담</h3>
