@@ -74,8 +74,15 @@
 	$MSG_REG_EMAIL = "이메일";
 	$MSG_REG_EMAIL_EX = "exampleid@gsa.hs.kr";
 	$MSG_REG_PW = "비밀번호";
+	$MSG_REG_PW_STRENGTH = "비밀번호 강도";
 	$MSG_REG_PW_VERIFY = "비밀번호 확인";
 	$MSG_REG_SUBMIT = "제출";
+
+	$MSG_MODIFY = "정보 수정";
+	$MSG_MODIFY_SANGME = "상태 메세지";
+	$MSG_MODIFY_PW = "새로운 비밀번호";
+	$MSG_MODIFY_PW_VERIFY = "새로운 비밀번호 확인";
+	$MSG_MODIFY_SUBMIT = "수정";
 
 	$MSG_DELETE_ACCOUNT = "계정 삭제";
 

@@ -25,7 +25,6 @@
         $email = $_POST['email'];
         $pw = $_POST['pw'];
         $pwvf = $_POST['pwvf'];
-//        $captcha = $_POST['capcha'];
         $result = $auth->register($id, $email, $pw, $pwvf);
         if($result['error']){
             echo "<script>alert(\"".$result['message']."\");</script>";
@@ -48,20 +47,18 @@
     <main role="main">
       <div class="container">
         <form class="form-register" action="register.php" method="post">
-          <h2 class="margin-bottom-30"><?php echo $MSG_REG_PLZ;?></h2>
-          <label for="inputId"><?php echo $MSG_REG_ID;?></label>
-          <input type="text" name="id" class="form-control margin-bottom-20" placeholder="<?php echo $MSG_REG_ID_EX;?>" required>
-          <label for="inputEmail"><?php echo $MSG_REG_EMAIL;?></label>
-          <input type="email" name="email" class="form-control margin-bottom-20" placeholder="<?php echo $MSG_REG_EMAIL_EX;?>" required>
-          <label for="inputPassword"><?php echo $MSG_REG_PW;?></label>
+          <h2 class="margin-bottom-30"><?php echo $MSG_MODIFY;?></h2>
+          <label for="inputId"><?php echo $MSG_MODIFY_SANGME;?></label>
+          <input type="text" name="id" class="form-control margin-bottom-20" value="" required>
+          <label for="inputPassword"><?php echo $MSG_MODIFY_PW;?></label>
           <input type="password" name="pw" class="form-control margin-bottom-20" onkeyup="validatePwd();" required>
-          <label><?php echo $MSG_REG_PW_STRENGTH; ?></label>
+          <label><?php echo $MSG_REG_PW_STRENGTH;?></label>
 	  <div class="progress">
 	    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100" id="strength"></div>
           </div><br>
-          <label for="inputPasswordVerify"><?php echo $MSG_REG_PW_VERIFY;?></label>
+          <label for="inputPasswordVerify"><?php echo $MSG_MODIFY_PW_VERIFY;?></label>
           <input type="password" name="pwvf" class="form-control margin-bottom-20" required>
-          <button class="btn btn-primary btn-block" type="submit"><?php echo $MSG_REG_SUBMIT;?></button>
+          <button class="btn btn-primary btn-block" type="submit"><?php echo $MSG_MODIFY_SUBMIT;?></button>
         </form>
       </div>
     </main>
