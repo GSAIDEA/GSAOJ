@@ -3,6 +3,7 @@
 	require_once("include/setlang.php");
 	require_once("include/include_auth.php");
 	$url = basename($_SERVER['REQUEST_URI']);
+	$uid = $auth->getSessionUID($auth->getSessionHash());
 ?>
 
     <header class="margin-bottom-20" id="hide_when_iframe_nav">
@@ -38,10 +39,15 @@
 echo $id['userid'];?>
 </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href= "userinfo.php?uid=<?php echo $auth->getSessionUID($auth->getSessionHash()); ?>"><?php echo $MSG_ACCOUNTINFO; ?></a>
-                <a class="dropdown-item" href= "status.php?uid=<?php echo $auth->getSessionUID($auth->getSessionHash());?>"><?php echo $MSG_SUBMITINFO; ?></a>
+                <a class="dropdown-item" href= "userinfo.php?uid=<?php echo $uid;?>"><?php echo $MSG_ACCOUNTINFO; ?></a>
+                <a class="dropdown-item" href= "status.php?uid=<?php echo $uid;?>"><?php echo $MSG_SUBMITINFO; ?></a>
                 <a class="dropdown-item" href= "usermodify.php"><?php echo $MSG_NAV_MODIFY;?></a>
-		            <a class="dropdown-item" href= "logout.php"><?php echo $MSG_LOGOUT;?></a>
+		<a class="dropdown-item" href= "logout.php"><?php echo $MSG_LOGOUT;?></a>
+		<?php
+		$privilege = $db_conn->query("select type from privilege where id=".$uid);
+		if(strcmp($privilege[0]['type'], "admin"){
+			echo "<a class=\"dropdown-item\" href=\"./admin/\"><?php echo $MSG_ADMIN_MODE;?></a>"
+		}?>
               </div>
 
 <?php } ?>
