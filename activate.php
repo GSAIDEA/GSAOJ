@@ -52,7 +52,7 @@
 				<div class="row margin-bottom-50"></div>
 				<form class="form-signin" action="resend.php" method="post" style="max-width: 1500px">
 					<h3 class="text-center"><?php echo $MSG_IF_EMAIL_EXPIRED; ?></h3>
-					<input type="email" class="form-control" id="email" name="email" placeholder=< ?php echo $MSG_FIND_EMAIL;?>>
+					<input type="email" class="form-control" id="email" name="email" placeholder=<?php echo $MSG_FIND_EMAIL;?>>
 					<button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $MSG_RESEND_EMAIL; ?></button>
 				</form>
 			</div>

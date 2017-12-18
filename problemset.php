@@ -84,7 +84,7 @@ for ($i=1; $i<=$page_count; $i++) {
 				<div class="row margin-bottom-20">
 					<div class="col-md-6">
 						<form class="form-inline my-2 my-lg-0" sytle="float:left;" action="problem.php">
-							<input class="form-control" name="id" type="text" placeholder=< ?php echo $MSG_PROBLEM_ID;?> aria-label="Search">
+							<input class="form-control" name="id" type="text" placeholder=<?php echo $MSG_PROBLEM_ID;?> aria-label="Search">
 							<button class="btn btn-primary" type="submit">Search</button>
 						</form>
 					</div>
@@ -92,11 +92,11 @@ for ($i=1; $i<=$page_count; $i++) {
 						<form class="form-inline my-2 my-lg-0" style="float: right;" action="problemset.php">
 							<?php if (isset($search)) {
         ?>
-							<input class="form-control" name="search" type="text" value=< ?php echo $search; ?> aria-label="Search">
+							<input class="form-control" name="search" type="text" value=<?php echo $search; ?> aria-label="Search">
 							<?php
     } else {
               ?>
-								<input class="form-control" name="search" type="text" placeholder=< ?php echo $MSG_PROBLEM_TITLE; ?> aria-label="Search">
+								<input class="form-control" name="search" type="text" placeholder=<?php echo $MSG_PROBLEM_TITLE; ?> aria-label="Search">
 								<?php
           } ?>
 									<button class="btn btn-primary" type="submit">Search</button>
