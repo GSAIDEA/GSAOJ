@@ -3,27 +3,27 @@
     require_once("include/setlang.php");
     require_once("include/include_auth.php");
 ?>
-	<!doctype html>
-	<html lang="en">
+  <!doctype html>
+  <html lang="en">
 
-	<head>
+  <head>
 
-		<title>
-			<?php echo $OJ_NAME;?>
-		</title>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="">
-		<meta name="author" content="">
+    <title>
+      <?php echo $OJ_NAME;?>
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-		<?php require("importcss.php");?>
+    <?php require("importcss.php");?>
 
-	</head>
+  </head>
 
-	<body>
-		<!-- navbar -->
-		<?php require("nav.php");
+  <body>
+    <!-- navbar -->
+    <?php require("nav.php");
     if (!$auth->isLogged()) {
         header('HTTP/1.0 403Forbidden');
         echo "<script type='text/javascript'>alert('".$MSG_ERR_NOT_LOGGEDIN."');</script>";
@@ -52,20 +52,20 @@
     }
     ?>
 
-		<main role="main">
-			<div class="container">
-				<form class="form-register" action="deleteacc.php" method="post">
-					<h2 class="margin-bottom-20"><?php echo $MSG_DELETE_ACCOUNT;?></h2>
-					<label for="inputPassword"><?php echo $MSG_LOGIN_PW?></label>
-					<input type="password" name="passwd" class="form-control" placeholder="" required>
-					<button class="btn btn-primary btn-block" type="submit"><?php echo $MSG_DELETE_ACCOUNT;?></button>
-				</form>
-			</div>
-		</main>
+    <main role="main">
+      <div class="container">
+        <form class="form-register" action="deleteacc.php" method="post">
+          <h2 class="margin-bottom-20"><?php echo $MSG_DELETE_ACCOUNT;?></h2>
+          <label for="inputPassword"><?php echo $MSG_LOGIN_PW?></label>
+          <input type="password" name="passwd" class="form-control" placeholder="" required>
+          <button class="btn btn-primary btn-block" type="submit"><?php echo $MSG_DELETE_ACCOUNT;?></button>
+        </form>
+      </div>
+    </main>
 
-		<?php require("importjs.php");?>
-		<?php require("footer.php");?>
+    <?php require("importjs.php");?>
+    <?php require("footer.php");?>
 
-	</body>
+  </body>
 
-	</html>
+  </html>

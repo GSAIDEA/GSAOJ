@@ -25,111 +25,111 @@ if ($page_count < $request_page || $request_page < 0) {
     echo "<script type='text/javascript'>alert('".sprintf($MSG_ERR_NOT_FOUND, "페이지")."'); window.history.back()</script>";
 }
 ?>
-	<!doctype html>
-	<html lang="en">
+  <!doctype html>
+  <html lang="en">
 
-	<head>
+  <head>
 
-		<title>
-			<?php echo $OJ_NAME;?>
-		</title>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="">
-		<meta name="author" content="">
+    <title>
+      <?php echo $OJ_NAME;?>
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-		<?php require("importcss.php");?>
+    <?php require("importcss.php");?>
 
-	</head>
+  </head>
 
-	<body>
-		<!-- navbar -->
-		<?php require("nav.php");?>
+  <body>
+    <!-- navbar -->
+    <?php require("nav.php");?>
 
-		<main role="main">
-			<div class="container">
-				<div class="row margin-bottom-20"></div>
+    <main role="main">
+      <div class="container">
+        <div class="row margin-bottom-20"></div>
 
-				<div class="row margin-bottom-20">
-					<h3 class="mx-auto"><?php echo $MSG_PROBLEMSET;?></h3>
-				</div>
+        <div class="row margin-bottom-20">
+          <h3 class="mx-auto"><?php echo $MSG_PROBLEMSET;?></h3>
+        </div>
 
-				<div class="row margin-bottom-20">
-					<nav class="mx-auto">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="problemset.php">&lt;&lt;</a></li>
-							<li class="page-item <?php if ($request_page == 0) {
+        <div class="row margin-bottom-20">
+          <nav class="mx-auto">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="problemset.php">&lt;&lt;</a></li>
+              <li class="page-item <?php if ($request_page == 0) {
     echo " active ";
 }?>"><a class="page-link" href="problemset.php">1</a></li>
-							<?php
+              <?php
 for ($i=1; $i<=$page_count; $i++) {
     if ($i == $request_page) {
         $temp_active = " active";
     } else {
         $temp_active = "";
     } ?>
-								<li class="page-item<?php echo $temp_active; ?>">
-									<a class="page-link" href="problemset.php?page=<?php echo $i; ?>">
-										<?php echo $i+1; ?>
-									</a>
-								</li>
-								<?php
+                <li class="page-item<?php echo $temp_active; ?>">
+                  <a class="page-link" href="problemset.php?page=<?php echo $i; ?>">
+                    <?php echo $i+1; ?>
+                  </a>
+                </li>
+                <?php
 }?>
-								<li class="page-item"><a class="page-link" href="problemset.php?page=<?php echo $page_count;?>">&gt;&gt;</a></li>
-						</ul>
-					</nav>
-				</div>
+                <li class="page-item"><a class="page-link" href="problemset.php?page=<?php echo $page_count;?>">&gt;&gt;</a></li>
+            </ul>
+          </nav>
+        </div>
 
-				<div class="row margin-bottom-20">
-					<div class="col-md-6">
-						<form class="form-inline my-2 my-lg-0" sytle="float:left;" action="problem.php">
-							<input class="form-control" name="id" type="text" placeholder=<?php echo $MSG_PROBLEM_ID;?> aria-label="Search">
-							<button class="btn btn-primary" type="submit">Search</button>
-						</form>
-					</div>
-					<div class="col-md-6">
-						<form class="form-inline my-2 my-lg-0" style="float: right;" action="problemset.php">
-							<?php if (isset($search)) {
+        <div class="row margin-bottom-20">
+          <div class="col-md-6">
+            <form class="form-inline my-2 my-lg-0" sytle="float:left;" action="problem.php">
+              <input class="form-control" name="id" type="text" placeholder=<?php echo $MSG_PROBLEM_ID;?> aria-label="Search">
+              <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+          </div>
+          <div class="col-md-6">
+            <form class="form-inline my-2 my-lg-0" style="float: right;" action="problemset.php">
+              <?php if (isset($search)) {
         ?>
-							<input class="form-control" name="search" type="text" value=<?php echo $search; ?> aria-label="Search">
-							<?php
+              <input class="form-control" name="search" type="text" value=<?php echo $search; ?> aria-label="Search">
+              <?php
     } else {
               ?>
-								<input class="form-control" name="search" type="text" placeholder=<?php echo $MSG_PROBLEM_TITLE; ?> aria-label="Search">
-								<?php
+                <input class="form-control" name="search" type="text" placeholder=<?php echo $MSG_PROBLEM_TITLE; ?> aria-label="Search">
+                <?php
           } ?>
-									<button class="btn btn-primary" type="submit">Search</button>
-						</form>
-					</div>
-				</div>
+                  <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
 
-				<div class="row">
-					<table class='table table-sm'>
-						<thead>
-							<tr>
-								<th>
-									<?php echo $MSG_PROBLEM_ID; ?>
-								</th>
-								<th>
-									<?php echo $MSG_PROBLEM_TITLE; ?>
-								</th>
-								<th>
-									<?php echo $MSG_PROBLEM_SOURCE; ?>
-								</th>
-								<th>
-									<?php echo $MSG_PROBLEM_SOLVED; ?>
-								</th>
-								<th>
-									<?php echo $MSG_PROBLEM_SUBMIT; ?>
-								</th>
-								<th>
-									<?php echo $MSG_PROBLEM_SUCCESS_RATE; ?>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
+        <div class="row">
+          <table class='table table-sm'>
+            <thead>
+              <tr>
+                <th>
+                  <?php echo $MSG_PROBLEM_ID; ?>
+                </th>
+                <th>
+                  <?php echo $MSG_PROBLEM_TITLE; ?>
+                </th>
+                <th>
+                  <?php echo $MSG_PROBLEM_SOURCE; ?>
+                </th>
+                <th>
+                  <?php echo $MSG_PROBLEM_SOLVED; ?>
+                </th>
+                <th>
+                  <?php echo $MSG_PROBLEM_SUBMIT; ?>
+                </th>
+                <th>
+                  <?php echo $MSG_PROBLEM_SUCCESS_RATE; ?>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
 if (isset($_GET['search'])) {
     $search = $_GET['search'];
     $res=$db_conn->prepare("select problem_id, title, source, solved, submit from problem where title like :search order by problem_id asc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");
@@ -147,38 +147,38 @@ while ($line = $res->fetch(PDO::FETCH_ASSOC)) {
     } else {
         $temp_success_rate = round(floatval($line['solved'])/floatval($line['submit'])*100, 3);
     } ?>
-							<tr>
-								<th>
-									<?php echo $line['problem_id']; ?>
-								</th>
-								<th>
-									<a href='./problem.php?id=<?php echo $line[' problem_id ']; ?>'>
-										<?php echo $line['title']; ?>
-									</a>
-								</th>
-								<th>
-									<?php echo $line['source']; ?>
-								</th>
-								<th>
-									<?php echo $line['solved']; ?>
-								</th>
-								<th>
-									<?php echo $line['submit']; ?>
-								</th>
-								<th>
-									<?php echo sprintf("%.2f", $temp_success_rate); ?>%</th>
-							</tr>
-							<?php
+              <tr>
+                <th>
+                  <?php echo $line['problem_id']; ?>
+                </th>
+                <th>
+                  <a href='./problem.php?id=<?php echo $line[' problem_id ']; ?>'>
+                    <?php echo $line['title']; ?>
+                  </a>
+                </th>
+                <th>
+                  <?php echo $line['source']; ?>
+                </th>
+                <th>
+                  <?php echo $line['solved']; ?>
+                </th>
+                <th>
+                  <?php echo $line['submit']; ?>
+                </th>
+                <th>
+                  <?php echo sprintf("%.2f", $temp_success_rate); ?>%</th>
+              </tr>
+              <?php
 }?>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</main>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
 
-		<?php require("importjs.php");?>
-		<?php require("footer.php");?>
+    <?php require("importjs.php");?>
+    <?php require("footer.php");?>
 
-	</body>
+  </body>
 
-	</html>
+  </html>

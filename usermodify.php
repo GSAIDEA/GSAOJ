@@ -8,16 +8,16 @@
 
 <head>
 
-	<title>
-		<?php echo $OJ_NAME;?>
-	</title>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
+  <title>
+    <?php echo $OJ_NAME;?>
+  </title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-	<?php require("importcss.php");
+  <?php require("importcss.php");
     if (!$auth->islogged()) {
         echo "<script>window.location = \"./login.php\";</script>";
         die();
@@ -26,8 +26,8 @@
 </head>
 
 <body>
-	<!-- navbar -->
-	<?php require("nav.php");
+  <!-- navbar -->
+  <?php require("nav.php");
     $uid = $auth->getSessionUID($auth->getSessionHash());
     $user = $auth->getUser($uid);
     $stmt_userdata = $db_conn->prepare("select sangme from userdata where uid=:uid");
@@ -69,64 +69,64 @@
 
     ?>
 
-	<main role="main">
-		<div class="container">
-			<form class="form-modify" action="usermodify.php" method="post">
-				<br>
-				<h2 class="margin-bottom-30"><?php echo $MSG_MODIFY;?></h2>
-				<label for="userid"><?php echo $MSG_LOGIN_ID;?></label>
-				<input type="text" name="id" class="form-control margin-bottom-20" value="<?php echo $user['userid'];?>" disabled>
-				<label for="modifySangme"><?php echo $MSG_MODIFY_SANGME;?></label>
-				<input type="text" name="sangme" class="form-control margin-bottom-20" value="<?php echo $sangme;?>">
-				<label for="inputPassword"><?php echo $MSG_MOTO_PW;?></label>
-				<input type="password" name="motopw" class="form-control margin-bottom-20">
-				<label for="changePassword"><?php echo $MSG_MODIFY_PW;?></label>
-				<input type="password" name="pw" class="form-control margin-bottom-20" onkeyup="validatePwd();" placeholder="<?php echo $MSG_NOT_CHANGE_PW;?>">
-				<label><?php echo $MSG_REG_PW_STRENGTH;?></label>
-				<div class="progress">
-					<div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100" id="strength"></div>
-				</div><br>
-				<label for="inputPasswordVerify"><?php echo $MSG_MODIFY_PW_VERIFY;?></label>
-				<input type="password" name="pwvf" class="form-control margin-bottom-20" placeholder="<?php echo $MSG_NOT_CHANGE_PW;?>">
-				<button class="btn btn-primary btn-block" type="submit"><?php echo $MSG_MODIFY_SUBMIT;?></button>
-			</form>
-		</div>
-	</main>
-	<script type="text/javascript" src="./Zxcvbn/zxcvbn.js">
-	</script>
-	<script>
-		var id = document.getElementsByName("id")[0];
-		var password = document.getElementsByName("pw")[0];
-		var str1 = document.getElementById("str1");
-		var str2 = document.getElementById("str2");
-		var str3 = document.getElementById("str3");
-		var str4 = document.getElementById("str4");
-		var strength = document.getElementById("strength");
+  <main role="main">
+    <div class="container">
+      <form class="form-modify" action="usermodify.php" method="post">
+        <br>
+        <h2 class="margin-bottom-30"><?php echo $MSG_MODIFY;?></h2>
+        <label for="userid"><?php echo $MSG_LOGIN_ID;?></label>
+        <input type="text" name="id" class="form-control margin-bottom-20" value="<?php echo $user['userid'];?>" disabled>
+        <label for="modifySangme"><?php echo $MSG_MODIFY_SANGME;?></label>
+        <input type="text" name="sangme" class="form-control margin-bottom-20" value="<?php echo $sangme;?>">
+        <label for="inputPassword"><?php echo $MSG_MOTO_PW;?></label>
+        <input type="password" name="motopw" class="form-control margin-bottom-20">
+        <label for="changePassword"><?php echo $MSG_MODIFY_PW;?></label>
+        <input type="password" name="pw" class="form-control margin-bottom-20" onkeyup="validatePwd();" placeholder="<?php echo $MSG_NOT_CHANGE_PW;?>">
+        <label><?php echo $MSG_REG_PW_STRENGTH;?></label>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100" id="strength"></div>
+        </div><br>
+        <label for="inputPasswordVerify"><?php echo $MSG_MODIFY_PW_VERIFY;?></label>
+        <input type="password" name="pwvf" class="form-control margin-bottom-20" placeholder="<?php echo $MSG_NOT_CHANGE_PW;?>">
+        <button class="btn btn-primary btn-block" type="submit"><?php echo $MSG_MODIFY_SUBMIT;?></button>
+      </form>
+    </div>
+  </main>
+  <script type="text/javascript" src="./Zxcvbn/zxcvbn.js">
+  </script>
+  <script>
+    var id = document.getElementsByName("id")[0];
+    var password = document.getElementsByName("pw")[0];
+    var str1 = document.getElementById("str1");
+    var str2 = document.getElementById("str2");
+    var str3 = document.getElementById("str3");
+    var str4 = document.getElementById("str4");
+    var strength = document.getElementById("strength");
 
-		function validatePwd() {
-			var score = zxcvbn(password.value, [id.value]);
-			strength.style.width = "" + (score.score * 25) + "%";
-			switch (score.score) {
-				case 0:
-					break;
-				case 1:
-					strength.style.backgroundColor = "red";
-					break;
-				case 2:
-					strength.style.backgroundColor = "yellow";
-					break;
-				case 3:
-					strength.style.backgroundColor = "lightgreen";
-					break;
-				case 4:
-					strength.style.backgroundColor = "skyblue";
-					break;
-			}
-		}
-	</script>
+    function validatePwd() {
+      var score = zxcvbn(password.value, [id.value]);
+      strength.style.width = "" + (score.score * 25) + "%";
+      switch (score.score) {
+        case 0:
+          break;
+        case 1:
+          strength.style.backgroundColor = "red";
+          break;
+        case 2:
+          strength.style.backgroundColor = "yellow";
+          break;
+        case 3:
+          strength.style.backgroundColor = "lightgreen";
+          break;
+        case 4:
+          strength.style.backgroundColor = "skyblue";
+          break;
+      }
+    }
+  </script>
 
-	<?php require("importjs.php");?>
-	<?php require("footer.php");?>
+  <?php require("importjs.php");?>
+  <?php require("footer.php");?>
 
 </body>
 

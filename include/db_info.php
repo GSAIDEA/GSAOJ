@@ -4,17 +4,17 @@ ini_set("session.cookie_httponly", 1);
 header('X-Frame-Options:SAMEORIGIN');
 
 // connect db
-static 	$DB_HOST="localhost";
-static 	$DB_NAME="testoj";
-static 	$DB_USER="testoj";
-static 	$DB_PASS="Testoj1111!";
+static   $DB_HOST="localhost";
+static   $DB_NAME="testoj";
+static   $DB_USER="testoj";
+static   $DB_PASS="Testoj1111!";
 
-static 	$OJ_NAME="GSA Online Judge";
-static 	$OJ_HOME="./";
-static 	$OJ_ADMIN="root@localhost";
-static 	$OJ_DATA="/home/judge/data";
+static   $OJ_NAME="GSA Online Judge";
+static   $OJ_HOME="./";
+static   $OJ_ADMIN="root@localhost";
+static   $OJ_DATA="/home/judge/data";
 static  $OJ_LANG="ko";
-static	$PAGE_LINE=50;
+static  $PAGE_LINE=50;
 
 date_default_timezone_set("Asia/Seoul");
 try {

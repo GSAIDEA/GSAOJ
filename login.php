@@ -2,25 +2,25 @@
     require_once("include/db_info.php");
     require_once("include/setlang.php");
 ?>
-	<!doctype html>
-	<html lang="en">
+  <!doctype html>
+  <html lang="en">
 
-	<head>
+  <head>
 
-		<title>
-			<?php echo $OJ_NAME;?>
-		</title>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="">
-		<meta name="author" content="">
+    <title>
+      <?php echo $OJ_NAME;?>
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-		<?php require("importcss.php");?>
-	</head>
+    <?php require("importcss.php");?>
+  </head>
 
-	<body class="body-signin">
-		<?php
+  <body class="body-signin">
+    <?php
     require("nav.php");
     require_once("include/include_auth.php");
     if ($auth->islogged()) {
@@ -43,27 +43,27 @@
     }
     ?>
 
-			<div class="container">
-				<form class="form-signin" action="login.php" method="post">
-					<h2 class="margin-bottom-20"><?php echo $MSG_LOGIN_PLZ;?></h2>
-					<label for="inputId" class="sr-only"><?php echo $MSG_LOGIN_ID;?></label>
-					<input type="text" name="id" class="form-control" placeholder="<?php echo $MSG_LOGIN_ID;?>" required autofocus>
-					<label for="inputPassword" class="sr-only"><?php echo $MSG_LOGIN_PW?></label>
-					<input type="password" name="pw" class="form-control margin-bottom-10" placeholder="<?php echo $MSG_LOGIN_PW;?>" required>
-					<div class="checkbox margin-bottom-20">
-						<label>
+      <div class="container">
+        <form class="form-signin" action="login.php" method="post">
+          <h2 class="margin-bottom-20"><?php echo $MSG_LOGIN_PLZ;?></h2>
+          <label for="inputId" class="sr-only"><?php echo $MSG_LOGIN_ID;?></label>
+          <input type="text" name="id" class="form-control" placeholder="<?php echo $MSG_LOGIN_ID;?>" required autofocus>
+          <label for="inputPassword" class="sr-only"><?php echo $MSG_LOGIN_PW?></label>
+          <input type="password" name="pw" class="form-control margin-bottom-10" placeholder="<?php echo $MSG_LOGIN_PW;?>" required>
+          <div class="checkbox margin-bottom-20">
+            <label>
             <input type="checkbox" value="remember-me" name="remember"><?php echo $MSG_LOGIN_REMEMBERME;?>
           </label>
-					</div>
-					<button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $MSG_LOGIN_SIGNIN;?></button>
-				</form>
-				<p class="text-center"><a href="./findacc.php">아이디/비밀번호 분실</a></p>
-			</div>
-			<!-- /container -->
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $MSG_LOGIN_SIGNIN;?></button>
+        </form>
+        <p class="text-center"><a href="./findacc.php">아이디/비밀번호 분실</a></p>
+      </div>
+      <!-- /container -->
 
-			<?php require("importjs.php");?>
-			<?php require("footer.php");?>
+      <?php require("importjs.php");?>
+      <?php require("footer.php");?>
 
-	</body>
+  </body>
 
-	</html>
+  </html>
