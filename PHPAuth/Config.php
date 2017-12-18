@@ -129,11 +129,9 @@ class Config
         if (!isset($this->config['emailmessage_suppress_reset'])) {
             $this->config['emailmessage_suppress_reset'] = 0;
         }
-		
-		if (!isset($this->config['mail_charset'])) {
+
+        if (!isset($this->config['mail_charset'])) {
             $this->config['mail_charset'] = "UTF-8";
         }
-	}
-	
-
+    }
 }

@@ -127,4 +127,6 @@
 	$MSG_INFO_TIME_EXCEED = "시간 초과";
 	$MSG_INFO_RUNTIME_ERROR = "실행중 에러";
 	$MSG_INFO_COMPILE_ERROR = "컴파일 에러";
+
+	$MSG_BOARDLIST = "게시판";
 ?>
