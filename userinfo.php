@@ -81,9 +81,11 @@ else{ ?>
             </tr>
           </table>
           <canvas id="summary"></canvas><br>
-					<button class="btn btn-block" type="button" onclick="window.location = &quot;usermodify.php&quot;;">내 정보 수정</button>
-					<button type="button" class="btn btn-block" onclick="window.location = &quot;deleteacc.php&quot;;">계정 삭제</button>
-        </div>
+<?php
+if($nav_uid == $uid){?>
+	  <button class="btn btn-primary btn-block" type="button" onclick="window.location = &quot;usermodify.php&quot;;"><?php echo $MSG_NAV_MODIFY;?></button>
+	  <button type="button" class="btn btn-secondary btn-block" onclick="window.location = &quot;deleteacc.php&quot;;"><?php echo $MSG_DELETE_ACCOUNT;?></button>
+<?php }?>        </div>
         <div class="col-md-8">
           <div class="row margin-bottom-10">
           <p class="userinfo_problem_header">해결한 문제</p>
@@ -101,8 +103,11 @@ else{ ?>
       </div>
 <?php }?>
     </div>
-    <?php require("importjs.php");?>
     <?php require("footer.php");?>
+    <script src="./mdb/js/jquery-3.2.1.min.js"></script>
+    <script src="./mdb/js/popper.min.js"></script>
+    <script src="./mdb/js/mdb.js"></script>
+    <script src="./mdb/js/bootstrap.js"></script>
     <script>
     var ctxP = document.getElementById("summary").getContext('2d');
     var myPieChart = new Chart(ctxP, {

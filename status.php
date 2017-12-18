@@ -16,13 +16,13 @@ if(!isset($_GET['uid']) && !isset($_GET['pid'])){
 }
 else if(!isset($_GET['uid'])){
 	$mode = 1;
-	$uid = $_GET['uid'];
+	$pid = $_GET['pid'];
 	$res = $db_conn->prepare("select count(*) as row_count from submit where problem_id = ?;");
 	$res->execute(array($pid));
 }
 else if(!isset($_GET['pid'])){
 	$mode = 2;
-	$pid = $_GET['pid'];
+	$uid = $_GET['uid'];
 	$res = $db_conn->prepare("select count(*) as row_count from submit where uid = ?;");
 	$res->execute(array($uid));
 }

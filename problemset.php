@@ -9,9 +9,9 @@ else {
 	$request_page = $_GET['page'];
 }
 if(isset($_GET['search'])){
-	$search_query = $_GET['search'];
+	$search = $_GET['search'];
 	$res=$db_conn->prepare("select count(*) as row_count from problem where title like :search;");
-	$res->execute(array(":search"=>"%".$search_query."%"));
+	$res->execute(array(":search"=>"%".$search."%"));
 }
 else{
 	$res = $db_conn->prepare("select count(*) as row_count from problem;");
@@ -76,7 +76,12 @@ for($i=1; $i<=$page_count; $i++) {
 	  </div>
 	  <div class="col-md-6">
             <form class="form-inline my-2 my-lg-0" style="float: right;" action="problemset.php">
-              <input class="form-control" name="search" type="text" placeholder = <?php echo $MSG_PROBLEM_TITLE;?> aria-label="Search">
+	      <?php if(isset($search)){?>
+	      	<input class="form-control" name="search" type="text" value = <?php echo $search;?> aria-label="Search">
+	      <?php }
+	      else{ ?>
+                <input class="form-control" name="search" type="text" placeholder = <?php echo $MSG_PROBLEM_TITLE;?> aria-label="Search">
+	      <?php } ?>
               <button class="btn btn-primary" type="submit">Search</button>
             </form>
 	  </div>
@@ -97,9 +102,9 @@ for($i=1; $i<=$page_count; $i++) {
             <tbody>
 <?php 
 if(isset($_GET['search'])){
-	$search_query = $_GET['search'];
+	$search = $_GET['search'];
 	$res=$db_conn->prepare("select problem_id, title, source, solved, submit from problem where title like :search order by problem_id asc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");
-	$res->execute(array(":search"=>"%".$search_query."%"));
+	$res->execute(array(":search"=>"%".$search."%"));
 }
 else {
 	$res = $db_conn->prepare("select problem_id, title, source, solved, submit, defunct from problem order by problem_id asc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");

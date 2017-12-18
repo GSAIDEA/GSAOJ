@@ -41,7 +41,6 @@ echo $id['userid'];?>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href= "userinfo.php?uid=<?php echo $nav_uid;?>"><?php echo $MSG_ACCOUNTINFO; ?></a>
                 <a class="dropdown-item" href= "status.php?uid=<?php echo $nav_uid;?>"><?php echo $MSG_SUBMITINFO; ?></a>
-                <a class="dropdown-item" href= "usermodify.php"><?php echo $MSG_NAV_MODIFY;?></a>
 		<a class="dropdown-item" href= "logout.php"><?php echo $MSG_LOGOUT;?></a>
 		<?php
 		$privilege_stmt = $db_conn->prepare("select type from privilege where id=".$nav_uid);

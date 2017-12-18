@@ -95,15 +95,17 @@ else { ?>
           </div>
           <div class='col-md-6 margin-bottom-50'>
             <h4><?php echo $MSG_PROBLEM_INPUT_EX;?>
-	      <button type='button' class='btn btn-link no-print copy-button' data-clipboard-target='#sample-input'>복사</button>
+	      <button type='button' style="padding: 0px" class='btn btn-link copy-button' data-clipboard-target='#sample-input'>복사</button>
 	    </h4>
             <hr>
             <p><code id='sample-input'><?php echo $problem_data['sample_input'];?></code></p>
           </div>
           <div class='col-md-6 margin-bottom-50'>
-            <h4><?php echo $MSG_PROBLEM_OUTPUT_EX;?></h4>
+            <h4><?php echo $MSG_PROBLEM_OUTPUT_EX;?>
+	      <button type='button' style="padding: 0px" class='btn btn-link copy-button' data-clipboard-target='#sample-output'>복사</button>
+   	    </h4>
             <hr>
-            <p><code><?php echo $problem_data['sample_output'];?></code></p>
+            <p><code id='sample-output'><?php echo $problem_data['sample_output'];?></code></p>
           </div>
           <div class='col-md-12 margin-bottom-50'>
             <h4><?php echo $MSG_PROBLEM_HINT;?></h4>
@@ -121,6 +123,9 @@ else { ?>
     </main>
     <script>
       var clipboard = new Clipboard('.copy-button');
+      clipboard.on('success', function(e){
+	e.clearSelection();
+      });
     </script>
     <script src="problem.js"></script>
     <?php require("importjs.php");?>
