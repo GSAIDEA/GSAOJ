@@ -2,12 +2,6 @@
 require_once("include/db_info.php");
 require_once("include/setlang.php");
 require_once("include/include_auth.php");
-if(isset($_GET['uid'])){
-	$uid=$_GET['uid'];
-}
-if(isset($_GET['pid'])){
-	$pid=$_GET['pid'];
-}
 $sessionuid=$auth->getSessionUID($auth->getSessionHash());
 if(!isset($_GET['page'])) {
 	$request_page = 0;
@@ -15,19 +9,27 @@ if(!isset($_GET['page'])) {
 else {
 	$request_page = $_GET['page'];
 }
-if(!isset($uid)&&!isset($pid)){
+if(!isset($_GET['uid']) && !isset($_GET['pid'])){
+	$mode = 0;
 	$res = $db_conn->prepare("select count(*) as row_count from submit;");
 	$res->execute();
 }
-else if(!isset($uid)){
+else if(!isset($_GET['uid'])){
+	$mode = 1;
+	$uid = $_GET['uid'];
 	$res = $db_conn->prepare("select count(*) as row_count from submit where problem_id = ?;");
 	$res->execute(array($pid));
 }
-else if(!isset($pid)){
+else if(!isset($_GET['pid'])){
+	$mode = 2;
+	$pid = $_GET['pid'];
 	$res = $db_conn->prepare("select count(*) as row_count from submit where uid = ?;");
 	$res->execute(array($uid));
 }
 else{
+	$mode = 3;
+	$pid = $_GET['pid'];
+	$uid = $_GET['uid'];
 	$res = $db_conn->prepare("select count(*) as row_count from submit where uid = ? and problem_id = ?;");
 	$res->execute(array($uid,$pid));
 }
@@ -62,11 +64,9 @@ if($page_count < $request_page || $request_page < 0) {
     <main role="main">
       <div class="container">
         <div class="row margin-bottom-20"></div>
-
         <div class="row margin-bottom-20">
           <h3 class="mx-auto"><?php echo $MSG_STATUS;?></h3>
         </div>
-
         <div class="row margin-bottom-20">
           <nav class="mx-auto">
             <ul class="pagination">
@@ -98,31 +98,29 @@ if($page_count < $request_page || $request_page < 0) {
                 <th><?php echo $MSG_STATUS_CODE_LENGTH; ?></th>
                 <th><?php echo $MSG_STATUS_LANGUAGE; ?></th>
                 <th><?php echo $MSG_STATUS_SUBMIT_DATE; ?></th>
-
               </tr>
             </thead>
             <tbody>
-<?php 
-	if(!isset($uid)&&!isset($pid)){
+<?php
+	if($mode == 0){
 		$res = $db_conn->prepare("select submit_id, uid, problem_id, state, time_usage, memory_usage, language, code_length, submit_date from submit order by submit_id desc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");
 		$res->execute();
 	}
-	else if(!isset($uid)){
+	else if($mode == 1){
 		$res = $db_conn->prepare("select submit_id, uid, problem_id, state, time_usage, memory_usage, language, code_length, submit_date from submit where problem_id=? order by submit_id desc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");
 		$res->execute(array($pid));
 	}
-	else if(!isset($pid)){
+	else if($mode == 2){
 		$res = $db_conn->prepare("select submit_id, uid, problem_id, state, time_usage, memory_usage, language, code_length, submit_date from submit where uid=? order by submit_id desc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");
 		$res->execute(array($uid));
 	}
 	else{
 		$res = $db_conn->prepare("select submit_id, uid, problem_id, state, time_usage, memory_usage, language, code_length, submit_date from submit where uid=? and problem_id=? order by submit_id desc limit ".($request_page*$PAGE_LINE).",".$PAGE_LINE.";");
-		$res->execute(array($uid,$pid));
+		$res->execute(array($uid, $pid));
 	}
 	$res->setFetchMode(PDO::FETCH_ASSOC);
 	while($line = $res->fetch()) {
 		$user=$auth->getUser($line['uid']);
-
 ?>
               <tr>
                 <th><?php echo $line['submit_id']; ?></th>
@@ -173,9 +171,7 @@ else {?>
         </div>
       </div>
     </main>
-
     <?php require("importjs.php");?>
     <?php require("footer.php");?>
-
   </body>
 </html>

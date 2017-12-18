@@ -3,7 +3,7 @@
 	require_once("include/setlang.php");
 	require_once("include/include_auth.php");
 	$url = basename($_SERVER['REQUEST_URI']);
-	$uid = $auth->getSessionUID($auth->getSessionHash());
+	$nav_uid = $auth->getSessionUID($auth->getSessionHash());
 ?>
 
     <header class="margin-bottom-20" id="hide_when_iframe_nav">
@@ -39,12 +39,12 @@
 echo $id['userid'];?>
 </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href= "userinfo.php?uid=<?php echo $uid;?>"><?php echo $MSG_ACCOUNTINFO; ?></a>
-                <a class="dropdown-item" href= "status.php?uid=<?php echo $uid;?>"><?php echo $MSG_SUBMITINFO; ?></a>
+                <a class="dropdown-item" href= "userinfo.php?uid=<?php echo $nav_uid;?>"><?php echo $MSG_ACCOUNTINFO; ?></a>
+                <a class="dropdown-item" href= "status.php?uid=<?php echo $nav_uid;?>"><?php echo $MSG_SUBMITINFO; ?></a>
                 <a class="dropdown-item" href= "usermodify.php"><?php echo $MSG_NAV_MODIFY;?></a>
 		<a class="dropdown-item" href= "logout.php"><?php echo $MSG_LOGOUT;?></a>
 		<?php
-		$privilege_stmt = $db_conn->prepare("select type from privilege where id=".$uid);
+		$privilege_stmt = $db_conn->prepare("select type from privilege where id=".$nav_uid);
 		$privilege_stmt->execute();
 		$privilege = $privilege_stmt->fetch();
 		if(strcmp($privilege['type'], "admin") == 0){
@@ -58,4 +58,3 @@ echo $id['userid'];?>
         </div>
       </nav>
     </header>
-    
