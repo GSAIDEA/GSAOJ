@@ -152,7 +152,7 @@ while ($line = $res->fetch(PDO::FETCH_ASSOC)) {
                   <?php echo $line['problem_id']; ?>
                 </th>
                 <th>
-                  <a href='./problem.php?id=<?php echo $line[' problem_id ']; ?>'>
+                  <a href='./problem.php?id=<?php echo $line['problem_id ']; ?>'>
                     <?php echo $line['title']; ?>
                   </a>
                 </th>
