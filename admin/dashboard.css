@@ -3,6 +3,7 @@
  */
 
 /* Move down content because we have a fixed navbar that is 3.5rem tall */
+
 body {
   padding-top: 3.5rem;
 }
@@ -29,7 +30,8 @@ h1 {
   z-index: 1000;
   padding: 20px 0;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
   border-right: 1px solid #eee;
 }
 
@@ -41,7 +43,7 @@ h1 {
   width: 100%;
 }
 
-.sidebar .nav-item + .nav-item {
+.sidebar .nav-item+.nav-item {
   margin-left: 0;
 }
 
@@ -54,6 +56,7 @@ h1 {
  */
 
 /* Placeholders */
+
 .placeholders {
   padding-bottom: 3rem;
 }

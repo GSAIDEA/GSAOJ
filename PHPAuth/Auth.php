@@ -1,6 +1,7 @@
 <?php
 
 namespace PHPAuth;
+
 require __DIR__."/vendor/autoload.php";
 use ZxcvbnPhp\Zxcvbn;
 use PHPMailer;
@@ -15,8 +16,8 @@ class Auth
     protected $dbh;
     public $config;
     public $lang;
-    protected $islogged = NULL;
-    protected $currentuser = NULL;
+    protected $islogged = null;
+    protected $currentuser = null;
 
     /**
      * Initiates database connection
@@ -49,7 +50,7 @@ class Auth
      * @param string $captcha = NULL
      * @return array $return
      */
-    public function login($id, $password, $remember = 0, $captcha = NULL)
+    public function login($id, $password, $remember = 0, $captcha = null)
     {
         $return['error'] = true;
 
@@ -126,8 +127,8 @@ class Auth
 
         $return['hash'] = $sessiondata['hash'];
         $return['expire'] = $sessiondata['expire'];
-		
-		$return['cookie_name'] = $this->config->cookie_name;
+
+        $return['cookie_name'] = $this->config->cookie_name;
 
         return $return;
     }
@@ -144,7 +145,7 @@ class Auth
     * @return array $return
     */
 
-    public function register($id, $email, $password, $repeatpassword, $params = Array(), $captcha = NULL, $sendmail = true)
+    public function register($id, $email, $password, $repeatpassword, $params = array(), $captcha = null, $sendmail = true)
     {
         $return['error'] = true;
         $block_status = $this->isBlocked();
@@ -172,7 +173,7 @@ class Auth
         // Validate id
         $validateid = $this->validateId($id);
 
-        if($validateid['error'] == 1){
+        if ($validateid['error'] == 1) {
             $return['message'] = $validateid['message'];
 
             return $return;
@@ -227,7 +228,7 @@ class Auth
         }
 
         $return['error'] = false;
-        $return['message'] = ($sendmail == true ? $this->lang["register_success"] : $this->lang['register_success_emailmessage_suppressed'] );
+        $return['message'] = ($sendmail == true ? $this->lang["register_success"] : $this->lang['register_success_emailmessage_suppressed']);
 
         return $return;
     }
@@ -289,7 +290,7 @@ class Auth
     * @return array $return
     */
 
-    public function requestReset($email, $sendmail = NULL)
+    public function requestReset($email, $sendmail = null)
     {
         $return['error'] = true;
         $block_status = $this->isBlocked();
@@ -311,7 +312,7 @@ class Auth
         $query = $this->dbh->prepare("SELECT id FROM {$this->config->table_users} WHERE email = ?");
         $query->execute(array($email));
 
-		if (!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
+        if (!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
             $this->addAttempt();
 
             $return['message'] = $this->lang["email_incorrect"];
@@ -373,7 +374,7 @@ class Auth
         $query = $this->dbh->prepare("SELECT id FROM {$this->config->table_users} WHERE email = ?");
         $query->execute(array($email));
 
-        if(!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
+        if (!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
             return false;
         }
 
@@ -382,10 +383,10 @@ class Auth
 
     public function getUIDbyID($id)
     {
-	$query = $this->dbh->prepare("SELECT id FROM {$this->config->table_users} WHERE userid = ?");
+        $query = $this->dbh->prepare("SELECT id FROM {$this->config->table_users} WHERE userid = ?");
         $query->execute(array($id));
 
-        if(!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
+        if (!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
             return false;
         }
 
@@ -484,9 +485,9 @@ class Auth
         $query = $this->dbh->prepare("SELECT id, uid, expiredate, ip, agent, cookie_crc FROM {$this->config->table_sessions} WHERE hash = ?");
         $query->execute(array($hash));
 
-		if (!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
-			return false;
-		}
+        if (!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
+            return false;
+        }
 
         $sid = $row['id'];
         $uid = $row['uid'];
@@ -523,12 +524,12 @@ class Auth
     {
         $query = $this->dbh->prepare("SELECT uid FROM {$this->config->table_sessions} WHERE hash = ?");
         $query->execute(array($hash));
-		
-		if (!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
-			return false;
-		}
 
-		return $row['uid'];
+        if (!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
+            return false;
+        }
+
+        return $row['uid'];
     }
 
     /**
@@ -609,16 +610,18 @@ class Auth
         $password = $this->getHash($password);
 
         if (is_array($params)&& count($params) > 0) {
-            $customParamsQueryArray = Array();
+            $customParamsQueryArray = array();
 
-            foreach($params as $paramKey => $paramValue) {
+            foreach ($params as $paramKey => $paramValue) {
                 $customParamsQueryArray[] = array('value' => $paramKey . ' = ?');
             }
 
             $setParams = ', ' . implode(', ', array_map(function ($entry) {
                 return $entry['value'];
             }, $customParamsQueryArray));
-        } else { $setParams = ''; }
+        } else {
+            $setParams = '';
+        }
 
         $query = $this->dbh->prepare("UPDATE {$this->config->table_users} SET userid = ?, email = ?, password = ?, isactive = ? {$setParams} WHERE id = ?");
 
@@ -690,7 +693,7 @@ class Auth
     * @return array $return
     */
 
-    public function deleteUser($uid, $password, $captcha = NULL)
+    public function deleteUser($uid, $password, $captcha = null)
     {
         $return['error'] = true;
 
@@ -777,16 +780,16 @@ class Auth
         }
 
         // if not set manually, check config data
-        if ($sendmail === NULL) {
+        if ($sendmail === null) {
             $sendmail = true;
-            if ($type == "reset" && $this->config->emailmessage_suppress_reset === true ) {
+            if ($type == "reset" && $this->config->emailmessage_suppress_reset === true) {
                 $sendmail = false;
                 $return['error'] = false;
 
                 return $return;
             }
 
-            if ($type == "activation" && $this->config->emailmessage_suppress_activation === true ) {
+            if ($type == "activation" && $this->config->emailmessage_suppress_activation === true) {
                 $sendmail = false;
                 $return['error'] = false;
 
@@ -798,7 +801,6 @@ class Auth
         $query->execute(array($uid, $type));
 
         if ($row = $query->fetch(\PDO::FETCH_ASSOC)) {
-
             $expiredate = strtotime($row['expire']);
             $currentdate = strtotime(date("Y-m-d H:i:s"));
 
@@ -833,7 +835,7 @@ class Auth
         if ($sendmail === true) {
             // Check configuration for SMTP parameters
             $mail = new PHPMailer;
-			$mail->CharSet = $this->config->mail_charset;
+            $mail->CharSet = $this->config->mail_charset;
             if ($this->config->smtp) {
                 $mail->isSMTP();
                 $mail->Host = $this->config->smtp_host;
@@ -855,9 +857,9 @@ class Auth
             $mail->isHTML(true);
 
             if ($type == "activation") {
-                    $mail->Subject = sprintf($this->lang['email_activation_subject'], $this->config->site_name);
-                    $mail->Body = sprintf($this->lang['email_activation_body'], $this->config->site_url, $this->config->site_activation_page, $key);
-                    $mail->AltBody = sprintf($this->lang['email_activation_altbody'], $this->config->site_url, $this->config->site_activation_page, $key);
+                $mail->Subject = sprintf($this->lang['email_activation_subject'], $this->config->site_name);
+                $mail->Body = sprintf($this->lang['email_activation_body'], $this->config->site_url, $this->config->site_activation_page, $key);
+                $mail->AltBody = sprintf($this->lang['email_activation_altbody'], $this->config->site_url, $this->config->site_activation_page, $key);
             } else {
                 $mail->Subject = sprintf($this->lang['email_reset_subject'], $this->config->site_name);
                 $mail->Body = sprintf($this->lang['email_reset_body'], $this->config->site_url, $this->config->site_password_reset_page, $key);
@@ -870,7 +872,6 @@ class Auth
 
                 return $return;
             }
-
         }
 
         $return['error'] = false;
@@ -936,10 +937,11 @@ class Auth
     * @return array $return
     */
 
-    protected function validatePassword($password) {
+    protected function validatePassword($password)
+    {
         $return['error'] = true;
 
-        if (strlen($password) < (int)$this->config->verify_password_min_length ) {
+        if (strlen($password) < (int)$this->config->verify_password_min_length) {
             $return['message'] = $this->lang["password_short"];
 
             return $return;
@@ -956,14 +958,15 @@ class Auth
     * @return array $return
     */
 
-    protected function validateId($id) {
+    protected function validateId($id)
+    {
         $return['error'] = 1;
 
-        if (strlen($id) < (int)$this->config->verify_id_min_length ) {
+        if (strlen($id) < (int)$this->config->verify_id_min_length) {
             $return['message'] = $this->lang["id_short"];
 
             return $return;
-        } elseif (strlen($id) > (int)$this->config->verify_id_max_length ) {
+        } elseif (strlen($id) > (int)$this->config->verify_id_max_length) {
             $return['message'] = $this->lang["id_long"];
 
             return $return;
@@ -981,14 +984,15 @@ class Auth
     * @return array $return
     */
 
-    protected function validateEmail($email) {
+    protected function validateEmail($email)
+    {
         $return['error'] = true;
 
-        if (strlen($email) < (int)$this->config->verify_email_min_length ) {
+        if (strlen($email) < (int)$this->config->verify_email_min_length) {
             $return['message'] = $this->lang["email_short"];
 
             return $return;
-        } elseif (strlen($email) > (int)$this->config->verify_email_max_length ) {
+        } elseif (strlen($email) > (int)$this->config->verify_email_max_length) {
             $return['message'] = $this->lang["email_long"];
 
             return $return;
@@ -998,7 +1002,7 @@ class Auth
             return $return;
         }
 
-        if ( (int)$this->config->verify_email_use_banlist ) {
+        if ((int)$this->config->verify_email_use_banlist) {
             $bannedEmails = json_decode(file_get_contents(__DIR__ . "/files/domains.json"));
 
             if (in_array(strtolower(explode('@', $email)[1]), $bannedEmails)) {
@@ -1023,7 +1027,7 @@ class Auth
     * @return array $return
     */
 
-    public function resetPass($key, $password, $repeatpassword, $captcha = NULL)
+    public function resetPass($key, $password, $repeatpassword, $captcha = null)
     {
         $return['error'] = true;
         $block_status = $this->isBlocked();
@@ -1136,7 +1140,7 @@ class Auth
             return $return;
         }
 
-        if ($sendmail == NULL) {
+        if ($sendmail == null) {
             $return['message'] = $this->lang['function_disabled'];
 
             return $return;
@@ -1153,7 +1157,7 @@ class Auth
         $query = $this->dbh->prepare("SELECT id FROM {$this->config->table_users} WHERE email = ?");
         $query->execute(array($email));
 
-		if(!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
+        if (!$row = $query->fetch(\PDO::FETCH_ASSOC)) {
             $this->addAttempt();
             $return['message'] = $this->lang["email_incorrect"];
 
@@ -1190,7 +1194,7 @@ class Auth
     * @param string $captcha = NULL
     * @return array $return
     */
-    public function changePassword($uid, $currpass, $newpass, $repeatnewpass, $captcha = NULL)
+    public function changePassword($uid, $currpass, $newpass, $repeatnewpass, $captcha = null)
     {
         $return['error'] = true;
         $block_status = $this->isBlocked();
@@ -1228,11 +1232,10 @@ class Auth
 
             return $return;
         }
-	if($newpass === $currpass){
-	    $return['message'] = $this->lang["newpassword_match"];
-	    return $return;
-
-	}
+        if ($newpass === $currpass) {
+            $return['message'] = $this->lang["newpassword_match"];
+            return $return;
+        }
 
         $zxcvbn = new Zxcvbn();
 
@@ -1278,7 +1281,7 @@ class Auth
     * @return array $return
     */
 
-    public function changeEmail($uid, $email, $password, $captcha = NULL)
+    public function changeEmail($uid, $email, $password, $captcha = null)
     {
         $return['error'] = true;
         $block_status = $this->isBlocked();
@@ -1395,12 +1398,12 @@ class Auth
     }
     /* private function checkCaptcha($captcha){
     try {
- 
+
         $url = 'https://www.google.com/recaptcha/api/siteverify';
         $data = ['secret'   => 'your_secret_here',
             'response' => $captcha,
             'remoteip' => $this->getIp()];
- 
+
         $options = [
             'http' => [
                 'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -1408,7 +1411,7 @@ class Auth
                 'content' => http_build_query($data)
             ]
         ];
- 
+
         $context  = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         return json_decode($result)->success;
@@ -1484,9 +1487,9 @@ class Auth
     protected function getIp()
     {
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != '') {
-           return $_SERVER['HTTP_X_FORWARDED_FOR'];
+            return $_SERVER['HTTP_X_FORWARDED_FOR'];
         } else {
-           return $_SERVER['REMOTE_ADDR'];
+            return $_SERVER['REMOTE_ADDR'];
         }
     }
 
@@ -1495,7 +1498,8 @@ class Auth
      * @return string
      * @return boolean false if no cookie
      */
-    public function getSessionHash(){
+    public function getSessionHash()
+    {
         return isset($_COOKIE[$this->config->cookie_name]) ? $_COOKIE[$this->config->cookie_name] : false;
     }
 
@@ -1503,8 +1507,9 @@ class Auth
      * Returns is user logged in
      * @return boolean
      */
-    public function isLogged() {
-        if ($this->islogged === NULL) {
+    public function isLogged()
+    {
+        if ($this->islogged === null) {
             $this->islogged = $this->checkSession($this->getSessionHash());
         }
         return $this->islogged;
@@ -1518,7 +1523,7 @@ class Auth
 
     public function getCurrentUser()
     {
-        if ($this->currentuser === NULL) {
+        if ($this->currentuser === null) {
             $hash = $this->getSessionHash();
             if ($hash === false) {
                 return false;

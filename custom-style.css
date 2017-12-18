@@ -1,5 +1,6 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
+
 /* Padding below the footer and lighter body text */
 
 body {
@@ -10,24 +11,70 @@ body {
 
 /* MARGIN VALUES
 -------------------------------------------------- */
+
 /* Margin - Top */
-.margin-top-5  { margin-top: 5px; }
-.margin-top-10 { margin-top: 10px;}
-.margin-top-20 { margin-top: 20px;}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
 
 /* Margin - Bottom */
-.margin-bottom-5  { margin-bottom:5px; }
-.margin-bottom-10 { margin-bottom:10px;} 
-.margin-bottom-15 { margin-bottom:15px;}
-.margin-bottom-20 { margin-bottom:20px;}
-.margin-bottom-25 { margin-bottom:25px;}
-.margin-bottom-30 { margin-bottom:30px;}
-.margin-bottom-35 { margin-bottom:35px;}
-.margin-bottom-40 { margin-bottom:40px;}
-.margin-bottom-45 { margin-bottom:45px;}
-.margin-bottom-50 { margin-bottom:50px;}
-.margin-bottom-55 { margin-bottom:55px;}
-.margin-bottom-60 { margin-bottom:60px;}
+
+.margin-bottom-5 {
+  margin-bottom: 5px;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.margin-bottom-15 {
+  margin-bottom: 15px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-25 {
+  margin-bottom: 25px;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+
+.margin-bottom-35 {
+  margin-bottom: 35px;
+}
+
+.margin-bottom-40 {
+  margin-bottom: 40px;
+}
+
+.margin-bottom-45 {
+  margin-bottom: 45px;
+}
+
+.margin-bottom-50 {
+  margin-bottom: 50px;
+}
+
+.margin-bottom-55 {
+  margin-bottom: 55px;
+}
+
+.margin-bottom-60 {
+  margin-bottom: 60px;
+}
 
 /* CUSTOMIZE THE SIGNIN PAGE
 -------------------------------------------------- */
@@ -36,14 +83,17 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
 }
+
 .form-signin {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
 }
+
 .form-signin .checkbox {
   font-weight: 400;
 }
+
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
@@ -51,9 +101,11 @@ body {
   padding: 10px;
   font-size: 16px;
 }
+
 .form-signin .form-control:focus {
   z-index: 2;
 }
+
 .form-register {
   max-width: 550px;
   padding: 15px;
@@ -64,21 +116,26 @@ body {
 -------------------------------------------------- */
 
 /* Carousel base class */
+
 .carousel {
   margin-bottom: 4rem;
 }
+
 /* Since positioning the image, we need to help out the caption */
+
 .carousel-caption {
   bottom: 3rem;
   z-index: 10;
 }
 
 /* Declare heights because of positioning of img element */
+
 .carousel-item {
   height: 32rem;
   background-color: #777;
 }
-.carousel-item > img {
+
+.carousel-item>img {
   position: absolute;
   top: 0;
   left: 0;
@@ -97,7 +154,8 @@ body {
   z-index: 1000;
   padding: 20px 0;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
   border-right: 1px solid #eee;
 }
 
@@ -109,7 +167,7 @@ body {
   width: 100%;
 }
 
-.sidebar .nav-item + .nav-item {
+.sidebar .nav-item+.nav-item {
   margin-left: 0;
 }
 
@@ -143,38 +201,40 @@ body {
 
 /* editor */
 
-#editor{
-      position: absolute;
-      top: 0;
-      right: 49%;
-      bottom: 0;
-      left: 0;
-      float: left;
-}
-#right{
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      max-width: 49%;
-      height: calc(100vh - 56px);
+#editor {
+  position: absolute;
+  top: 0;
+  right: 49%;
+  bottom: 0;
+  left: 0;
+  float: left;
 }
 
-
-blockquote{
-      border-left: 5px solid #eee;
-      border-right: 5px solid #eee;
-}
-.lightgray{
-	background-color: lightgray;
-}
-.userinfo_problem_header{
-	margin-top: .5rem;
-	margin-left: 2rem;
-	margin-bottom: 0;
-}
-.splicer{
-	padding-left: 5px;
-	padding-bottom: .5rem;
+#right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 49%;
+  height: calc(100vh - 56px);
 }
 
+blockquote {
+  border-left: 5px solid #eee;
+  border-right: 5px solid #eee;
+}
+
+.lightgray {
+  background-color: lightgray;
+}
+
+.userinfo_problem_header {
+  margin-top: .5rem;
+  margin-left: 2rem;
+  margin-bottom: 0;
+}
+
+.splicer {
+  padding-left: 5px;
+  padding-bottom: .5rem;
+}
