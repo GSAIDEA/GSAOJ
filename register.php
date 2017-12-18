@@ -55,7 +55,7 @@
           <input type="email" name="email" class="form-control margin-bottom-20" placeholder="<?php echo $MSG_REG_EMAIL_EX;?>" required>
           <label for="inputPassword"><?php echo $MSG_REG_PW;?></label>
           <input type="password" name="pw" class="form-control margin-bottom-20" onkeyup="validatePwd();" required>
-          <label>비밀번호 강도</label>
+          <label><?php echo $MSG_REG_PW_STRENGTH; ?></label>
 	  <div class="progress">
 	    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100" id="strength"></div>
           </div><br>

@@ -15,7 +15,7 @@
 	$MSG_PROBLEM_DESC = "문제 설명";
 	$MSG_PROBLEM_INPUT = "입력";
 	$MSG_PROBLEM_INPUT_EX = "입력 예시";
-    	$MSG_PROBLEM_OUTPUT = "출력";
+        $MSG_PROBLEM_OUTPUT = "출력";
 	$MSG_PROBLEM_OUTPUT_EX = "출력 예시";
 	$MSG_PROBLEM_HINT = "힌트";
 	$MSG_PROBLEM_SOURCE = "출처";
@@ -74,8 +74,18 @@
 	$MSG_REG_EMAIL = "이메일";
 	$MSG_REG_EMAIL_EX = "exampleid@gsa.hs.kr";
 	$MSG_REG_PW = "비밀번호";
+	$MSG_REG_PW_STRENGTH = "비밀번호 강도";
 	$MSG_REG_PW_VERIFY = "비밀번호 확인";
 	$MSG_REG_SUBMIT = "제출";
+
+	$MSG_NAV_MODIFY = "내 정보 수정";
+	$MSG_MODIFY = "정보 수정";
+	$MSG_MODIFY_SANGME = "상태 메세지";
+	$MSG_MOTO_PW = "기존 비밀번호";
+	$MSG_MODIFY_PW = "새로운 비밀번호";
+	$MSG_MODIFY_PW_VERIFY = "새로운 비밀번호 확인";
+	$MSG_MODIFY_SUBMIT = "수정";
+	$MSG_NOT_CHANGE_PW = "비밀번호 변경을 원하지 않으면 빈칸으로 두십시오";
 
 	$MSG_DELETE_ACCOUNT = "계정 삭제";
 
@@ -88,6 +98,7 @@
 	$MSG_ERR_NOT_FOUND = "%s을(를) 찾을 수 없습니다.";
 	$MSG_ERR_NOT_ASSIGNED = "%s이(가) 지정되지 않았습니다.";
 	$MSG_ERR_PDOEXCEPTION = "DB에 잘못된 요청을 하였습니다.";
+
 
 	$MSG_ADMIN = "관리자 페이지";
 	$MSG_ADMIN_ADD_NEWS = "뉴스 추가";
