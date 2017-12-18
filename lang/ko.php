@@ -15,7 +15,7 @@
 	$MSG_PROBLEM_DESC = "문제 설명";
 	$MSG_PROBLEM_INPUT = "입력";
 	$MSG_PROBLEM_INPUT_EX = "입력 예시";
-    $MSG_PROBLEM_OUTPUT = "출력";
+        $MSG_PROBLEM_OUTPUT = "출력";
 	$MSG_PROBLEM_OUTPUT_EX = "출력 예시";
 	$MSG_PROBLEM_HINT = "힌트";
 	$MSG_PROBLEM_SOURCE = "출처";
@@ -98,6 +98,7 @@
 	$MSG_ERR_NOT_FOUND = "%s을(를) 찾을 수 없습니다.";
 	$MSG_ERR_NOT_ASSIGNED = "%s이(가) 지정되지 않았습니다.";
 	$MSG_ERR_PDOEXCEPTION = "DB에 잘못된 요청을 하였습니다.";
+
 
 	$MSG_ADMIN = "관리자 페이지";
 	$MSG_ADMIN_ADD_NEWS = "뉴스 추가";

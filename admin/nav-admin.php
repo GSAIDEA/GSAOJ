@@ -2,8 +2,8 @@
 	require_once("../include/db_info.php");
 	require_once("../include/setlang.php");
 ?>
-
-      <nav class="col-md-3 d-none d-sm-block bg-light sidebar">
+<header>
+      <nav class="col-md-3 d-none d-sm-block bg-light sidebar" style="position:fixed;">
         <a class="navbar-brand" href="./index.php"><?php echo $MSG_ADMIN;?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,3 +44,4 @@
           </ul>
         </div>
       </nav>
+</header>

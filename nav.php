@@ -44,9 +44,11 @@ echo $id['userid'];?>
                 <a class="dropdown-item" href= "usermodify.php"><?php echo $MSG_NAV_MODIFY;?></a>
 		<a class="dropdown-item" href= "logout.php"><?php echo $MSG_LOGOUT;?></a>
 		<?php
-		$privilege = $db_conn->query("select type from privilege where id=".$uid);
-		if(strcmp($privilege[0]['type'], "admin"){
-			echo "<a class=\"dropdown-item\" href=\"./admin/\"><?php echo $MSG_ADMIN_MODE;?></a>"
+		$privilege_stmt = $db_conn->prepare("select type from privilege where id=".$uid);
+		$privilege_stmt->execute();
+		$privilege = $privilege_stmt->fetch();
+		if(strcmp($privilege['type'], "admin") == 0){
+			echo "<a class=\"dropdown-item\" href=\"./admin/\">".$MSG_ADMIN."</a>";
 		}?>
               </div>
 
