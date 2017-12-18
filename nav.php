@@ -2,7 +2,7 @@
 	require_once("include/db_info.php");
 	require_once("include/setlang.php");
 	require_once("include/include_auth.php");
-	$url = basename($_SERVER['REQUEST_URI']);
+	$nav_url = basename($_SERVER['REQUEST_URI']);
 	$nav_uid = $auth->getSessionUID($auth->getSessionHash());
 ?>
 
@@ -14,13 +14,13 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarCollapse">
           <ul class="nav navbar-nav mr-auto">
-            <li class="nav-item <?php if(explode("?",$url)[0] == "problemset.php") echo "active";?>">
+            <li class="nav-item <?php if(explode("?",$nav_url)[0] == "problemset.php") echo "active";?>">
               <a class="nav-link" href="./problemset.php"><?php echo $MSG_PROBLEMSET;?></a>
             </li>
-            <li class="nav-item <?php if(explode("?", $url)[0] == "status.php") echo "active";?>">
+            <li class="nav-item <?php if(explode("?", $nav_url)[0] == "status.php") echo "active";?>">
               <a class="nav-link" href="./status.php"><?php echo $MSG_STATUS;?></a>
             </li>
-            <li class="nav-item <?php if(explode("?", $url)[0] == "rank.php") echo "active";?>">
+            <li class="nav-item <?php if(explode("?", $nav_url)[0] == "rank.php") echo "active";?>">
               <a class="nav-link" href="./rank.php"><?php echo $MSG_RANK;?></a>
             </li>
           </ul>
