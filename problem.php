@@ -41,7 +41,7 @@
       });
     </script>
     <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
+    <script src="http://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
   </head>
   <body>
     <!-- navbar -->
@@ -94,9 +94,11 @@ else { ?>
             <p><?php echo $problem_data['output'];?></p>
           </div>
           <div class='col-md-6 margin-bottom-50'>
-            <h4><?php echo $MSG_PROBLEM_INPUT_EX;?></h4>
+            <h4><?php echo $MSG_PROBLEM_INPUT_EX;?>
+	      <button type='button' class='btn btn-link no-print copy-button' data-clipboard-target='#sample-input'>복사</button>
+	    </h4>
             <hr>
-            <p><code><?php echo $problem_data['sample_input'];?></code></p>
+            <p><code id='sample-input'><?php echo $problem_data['sample_input'];?></code></p>
           </div>
           <div class='col-md-6 margin-bottom-50'>
             <h4><?php echo $MSG_PROBLEM_OUTPUT_EX;?></h4>
@@ -117,6 +119,9 @@ else { ?>
 <?php } ?>
       </div>
     </main>
+    <script>
+      var clipboard = new Clipboard('.copy-button');
+    </script>
     <script src="problem.js"></script>
     <?php require("importjs.php");?>
     <?php require("footer.php");?>
