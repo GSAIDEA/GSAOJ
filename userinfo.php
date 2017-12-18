@@ -80,9 +80,9 @@ else{ ?>
               <td><?php echo $line['cperr'];?></td>
             </tr>
           </table>
-          <canvas id="summary"></canvas>
+          <canvas id="summary"></canvas><br>
 					<button class="btn btn-block" type="button" href="usermodify.php">내 정보 수정</button>
-					<button type="button" class="btn btn-block" href="deleteacc.php">계정 삭제</button><br>
+					<button type="button" class="btn btn-block" href="deleteacc.php">계정 삭제</button>
         </div>
         <div class="col-md-8">
           <div class="row margin-bottom-10">
