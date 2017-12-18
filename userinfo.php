@@ -81,8 +81,8 @@ else{ ?>
             </tr>
           </table>
           <canvas id="summary"></canvas><br>
-					<button class="btn btn-block" type="button" href="usermodify.php">내 정보 수정</button>
-					<button type="button" class="btn btn-block" href="deleteacc.php">계정 삭제</button>
+					<button class="btn btn-block" type="button" onclick="window.location = &quot;usermodify.php&quot;;">내 정보 수정</button>
+					<button type="button" class="btn btn-block" onclick="window.location = &quot;deleteacc.php&quot;;">계정 삭제</button>
         </div>
         <div class="col-md-8">
           <div class="row margin-bottom-10">
