@@ -15,7 +15,7 @@
   $MSG_PROBLEM_DESC = "문제 설명";
   $MSG_PROBLEM_INPUT = "입력";
   $MSG_PROBLEM_INPUT_EX = "입력 예시";
-        $MSG_PROBLEM_OUTPUT = "출력";
+  $MSG_PROBLEM_OUTPUT = "출력";
   $MSG_PROBLEM_OUTPUT_EX = "출력 예시";
   $MSG_PROBLEM_HINT = "힌트";
   $MSG_PROBLEM_SOURCE = "출처";
@@ -72,7 +72,7 @@
   $MSG_REG_ID = "아이디";
   $MSG_REG_ID_EX = "exampleid";
   $MSG_REG_EMAIL = "이메일";
-  $MSG_REG_EMAIL_EX = "exampleid@gsa.hs.kr";
+  $MSG_REG_EMAIL_EX = "exampleid@example.com";
   $MSG_REG_PW = "비밀번호";
   $MSG_REG_PW_STRENGTH = "비밀번호 강도";
   $MSG_REG_PW_VERIFY = "비밀번호 확인";
@@ -104,6 +104,8 @@
   $MSG_ADMIN_ADD_NEWS = "뉴스 추가";
   $MSG_ADMIN_LIST_NEWS = "뉴스 리스트";
   $MSG_ADMIN_ADD_PROBLEM = "문제 추가";
+  $MSG_ADMIN_ADD_PROBLEM_PREVIEW = "미리보기";
+  $MSG_ADMIN_ADD_PROBLEM_SUBMIT = "제출";
   $MSG_ADMIN_LIST_PROBLEM = "문제 리스트";
   $MSG_ADMIN_USER = "사용자 관리";
   $MSG_ADMIN_ADD_CONTEST = "대회 추가";
