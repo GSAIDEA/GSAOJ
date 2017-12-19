@@ -5,12 +5,12 @@
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
   <ul class="nav nav-pills flex-column">
     <li class="nav-item">
-      <a class="nav-link" href="./addnews.php">
+      <a class="nav-link disabled" href="./addnews.php">
         <?php echo $MSG_ADMIN_ADD_NEWS;?>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="./listnews.php">
+      <a class="nav-link disabled" href="./listnews.php">
         <?php echo $MSG_ADMIN_LIST_NEWS;?>
       </a>
     </li>

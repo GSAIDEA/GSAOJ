@@ -114,15 +114,15 @@ if ($err_problem_id) {
               </div>
               <div class='col-md-6 margin-bottom-50'>
                 <h4><?php echo $MSG_PROBLEM_INPUT_EX; ?>
-        <button type='button' style="padding: 0px" class='btn btn-link copy-button' data-clipboard-target='#sample-input'>복사</button>
-      </h4>
+        	  <button style="padding: 0px" class='btn btn-link copy-button' data-clipboard-target='#sample-input'>복사</button>
+      		</h4>
                 <hr>
                 <p><code id='sample-input'><?php echo $problem_data['sample_input']; ?></code></p>
               </div>
               <div class='col-md-6 margin-bottom-50'>
                 <h4><?php echo $MSG_PROBLEM_OUTPUT_EX; ?>
-        <button type='button' style="padding: 0px" class='btn btn-link copy-button' data-clipboard-target='#sample-output'>복사</button>
-         </h4>
+        	  <button style="padding: 0px" class='btn btn-link copy-button' data-clipboard-target='#sample-output'>복사</button>
+       		</h4>
                 <hr>
                 <p><code id='sample-output'><?php echo $problem_data['sample_output']; ?></code></p>
               </div>

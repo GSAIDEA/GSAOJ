@@ -53,9 +53,7 @@
                 <?php echo $MSG_CREATEACCOUNT; ?>
               </a>
             </div>
-            <?php
-} else {
-        ?>
+<?php } else { ?>
               <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php $id = $auth->getUser($auth->getSessionUID($auth->getSessionHash()));
         echo $id['userid']; ?>
 </a>
@@ -69,13 +67,14 @@
                 <a class="dropdown-item" href="logout.php">
                   <?php echo $MSG_LOGOUT; ?>
                 </a>
-                <?php
-        $privilege_stmt = $db_conn->prepare("select type from privilege where id=".$nav_uid);
-        $privilege_stmt->execute();
-        $privilege = $privilege_stmt->fetch();
-        if (strcmp($privilege['type'], "admin") == 0) {
-            echo "<a class=\"dropdown-item\" href=\"./admin/\">".$MSG_ADMIN."</a>";
-        } ?>
+<?php
+$privilege_stmt = $db_conn->prepare("select type from privilege where id=".$nav_uid);
+$privilege_stmt->execute();
+$privilege = $privilege_stmt->fetch();
+if (strcmp($privilege['type'], "admin") == 0) { ?>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="./admin/"><?php echo $MSG_ADMIN;?></a>
+<?php }?>
               </div>
 
               <?php
