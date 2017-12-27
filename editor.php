@@ -1,7 +1,7 @@
 <?php
-require_once("include/db_info.php");
-require_once("include/setlang.php");
-require_once("include/include_auth.php");
+require_once "include/db_info.php";
+require_once "include/setlang.php";
+require_once "include/include_auth.php";
 if (!$auth->islogged()) {
     echo "<script>window.location = \"./login.php\";</script>";
     die();
@@ -16,7 +16,7 @@ if (isset($_GET['submitid'])) {
         die();
     }
 }
-require("include/setlang.php");
+require_once "include/setlang.php";
 ?>
   <!doctype html>
   <html lang="en">
@@ -32,7 +32,7 @@ require("include/setlang.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
 
   </head>
 
@@ -202,7 +202,7 @@ if (isset($_GET['submitid'])) {
         }
       })
     </script>
-    <?php require("importjs.php");?>
+    <?php require_once "importjs.php";?>
   </body>
 
   </html>

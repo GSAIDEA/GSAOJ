@@ -1,6 +1,6 @@
 <?php
-require_once("include/db_info.php");
-require_once("include/setlang.php");
+require_once "include/db_info.php";
+require_once "include/setlang.php";
 
 if (!isset($_GET['page'])) {
     $request_page = 0;
@@ -36,13 +36,13 @@ $res->execute();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
 
   </head>
 
   <body>
     <!-- navbar -->
-    <?php require("nav.php");?>
+    <?php require_once "nav.php";?>
 
     <main role="main">
       <div class="container">
@@ -148,8 +148,8 @@ while ($line = $res->fetch(PDO::FETCH_ASSOC)) {
       </div>
     </main>
 
-    <?php require("importjs.php");?>
-    <?php require("footer.php");?>
+    <?php require_once "importjs.php";?>
+    <?php require_once "footer.php";?>
 
   </body>
 

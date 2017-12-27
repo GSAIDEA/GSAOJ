@@ -1,6 +1,6 @@
 <?php
-    require_once("../include/db_info.php");
-    require_once("../include/setlang.php");
+    require_once "../include/db_info.php";
+    require_once "../include/setlang.php";
 ?>
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
   <ul class="nav nav-pills flex-column">

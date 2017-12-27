@@ -1,7 +1,7 @@
 <?php
-        require_once("include/db_info.php");
-        require_once("include/setlang.php");
-        require_once("include/include_auth.php");
+        require_once "include/db_info.php";
+        require_once "include/setlang.php";
+        require_once "include/include_auth.php";
 ?>
 <!doctype html>
 <html lang="ko">
@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
   </head>
 
   <body class="body-signin">

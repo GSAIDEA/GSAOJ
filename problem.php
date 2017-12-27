@@ -1,6 +1,6 @@
 <?php
-    require_once("include/db_info.php");
-    require_once("include/setlang.php");
+    require_once "include/db_info.php";
+    require_once "include/setlang.php";
 
     if (!isset($_GET['id'])) {
         $err_problem_id = true;
@@ -36,7 +36,7 @@
     echo "    <meta http-equiv='refresh' content='3; url=./problemset.php'>";
 }?>
 
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
 
     <!-- For mathematics -->
     <script type="text/x-mathjax-config">
@@ -48,7 +48,7 @@
 
   <body>
     <!-- navbar -->
-    <?php require("nav.php");?>
+    <?php require_once "nav.php";?>
 
     <main role="main">
       <div class="container" id="problem_expression">
@@ -152,8 +152,8 @@ if ($err_problem_id) {
       });
     </script>
     <script src="problem.js"></script>
-    <?php require("importjs.php");?>
-    <?php require("footer.php");?>
+    <?php require_once "importjs.php";?>
+    <?php require_once "footer.php";?>
 
   </body>
 

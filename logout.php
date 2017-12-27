@@ -1,7 +1,7 @@
 <?php
-    require_once("include/include_auth.php");
-    require_once("include/db_info.php");
-    require_once("include/setlang.php");
+    require_once "include/include_auth.php";
+    require_once "include/db_info.php";
+    require_once "include/setlang.php";
 ?>
 
   <head>

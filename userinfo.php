@@ -1,7 +1,7 @@
 <?php
-    require_once("include/db_info.php");
-    require_once("include/setlang.php");
-    require_once("include/include_auth.php");
+    require_once "include/db_info.php";
+    require_once "include/setlang.php";
+    require_once "include/include_auth.php";
     $err_user_id=false;
     if (!isset($_GET['uid'])) {
         $err_user_id = true;
@@ -28,12 +28,12 @@
     <?php if ($err_user_id) {
     echo "    <meta http-equiv='refresh' content='3; url=./index.php'>";
 }?>
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
   </head>
 
   <body>
     <!-- navbar -->
-    <?php require("nav.php");?>
+    <?php require_once "nav.php";?>
     <div class="container">
       <div class="row margin-bottom-20"></div>
       <?php if ($err_user_id) {
@@ -149,7 +149,7 @@ if ($nav_uid == $uid) {
         <?php
 }?>
     </div>
-    <?php require("footer.php");?>
+    <?php require_once "footer.php";?>
     <script src="./mdb/js/jquery-3.2.1.min.js"></script>
     <script src="./mdb/js/popper.min.js"></script>
     <script src="./mdb/js/mdb.js"></script>

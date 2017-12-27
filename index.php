@@ -1,6 +1,6 @@
 <?php
-    require_once("include/db_info.php");
-    require_once("include/setlang.php");
+    require_once "include/db_info.php";
+    require_once "include/setlang.php";
 ?>
   <!doctype html>
   <html lang="en">
@@ -20,13 +20,13 @@
     </script>
     <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
 
   </head>
 
   <body>
     <!-- navbar -->
-    <?php require("nav.php");?>
+    <?php require_once "nav.php";?>
 
     <main role="main">
       <div class="jumbotron">
@@ -54,8 +54,8 @@
 
     </main>
 
-    <?php require("importjs.php");?>
-    <?php require("footer.php");?>
+    <?php require_once "importjs.php";?>
+    <?php require_once "footer.php";?>
 
   </body>
 

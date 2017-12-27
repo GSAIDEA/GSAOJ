@@ -1,7 +1,7 @@
 <?php
-require_once("../include/db_info.php");
-require_once("../include/setlang.php");
-require("checkprivilege.php");
+require_once "../include/db_info.php";
+require_once "../include/setlang.php";
+require_once "checkprivilege.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -14,14 +14,14 @@ require("checkprivilege.php");
 
     <title><?php echo $OJ_NAME;?></title>
 
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
   </head>
 
   <body>
-    <?php require("nav-admin-top.php");?>
+    <?php require_once "nav-admin-top.php";?>
     <div class="container-fluid">
       <div class="row">
-        <?php require("nav-admin.php");?>
+        <?php require_once "nav-admin.php";?>
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
           <h1>Admin Page</h1>
           <hr>
@@ -30,7 +30,7 @@ require("checkprivilege.php");
       </div>
     </div>
 
-    <?php require("../importjs.php");?>
+    <?php require_once "../importjs.php";?>
   </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
-require_once("include/db_info.php");
-require_once("include/include_auth.php");
+require_once "include/db_info.php";
+require_once "include/include_auth.php";
 if (!$auth->islogged()) {
     echo "<script>window.location = \"./login.php\";</script>";
     die();

@@ -1,6 +1,6 @@
 <?php
-    require_once("include/db_info.php");
-    require_once("include/setlang.php");
+    require_once "include/db_info.php";
+    require_once "include/setlang.php";
 ?>
   <!doctype html>
   <html lang="en">
@@ -16,13 +16,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
   </head>
 
   <body class="body-signin">
-    <?php require("nav.php");?>
+    <?php require_once "nav.php";?>
     <?php
-    require_once("include/include_auth.php");
+    require_once "include/include_auth.php";
     if ($auth->islogged()) {
         echo "<script>history.back();</script>";
         die();
@@ -51,8 +51,8 @@
         </form>
       </div>
 
-      <?php require("importjs.php");?>
-      <?php require("footer.php");?>
+      <?php require_once "importjs.php";?>
+      <?php require_once "footer.php";?>
 
   </body>
 

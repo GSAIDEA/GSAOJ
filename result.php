@@ -16,13 +16,13 @@ require "./include/setlang.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
 
   </head>
 
   <body>
     <!-- navbar -->
-    <?php require("nav.php");
+    <?php require_once "nav.php";
 if (!$auth->isLogged()) {
     echo "<script type='text/javascript'>alert('".$MSG_ERR_NOT_LOGGEDIN."'); window.history.back()</script>";
     die();

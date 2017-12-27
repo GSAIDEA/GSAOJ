@@ -1,7 +1,7 @@
 <?php
-    require_once("include/db_info.php");
-    require_once("include/setlang.php");
-    require_once("include/include_auth.php");
+    require_once "include/db_info.php";
+    require_once "include/setlang.php";
+    require_once "include/include_auth.php";
     $nav_url = basename($_SERVER['REQUEST_URI']);
     $nav_uid = $auth->getSessionUID($auth->getSessionHash());
 ?>

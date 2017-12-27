@@ -1,7 +1,7 @@
 <?php
-    require_once("include/db_info.php");
-    require_once("include/setlang.php");
-    require_once("include/include_auth.php");
+    require_once "include/db_info.php";
+    require_once "include/setlang.php";
+    require_once "include/include_auth.php";
 
     $id=$_GET['id'];
     if (!isset($_GET['page'])) {
@@ -46,14 +46,14 @@
     <meta http-equiv='refresh' content='3; url=./status.php'>
     <?php
 }
-    require("importcss.php");
+    require_once "importcss.php";
     ?>
 
   </head>
 
   <body>
     <!-- navbar -->
-    <?php require("./nav.php");?>
+    <?php require_once "./nav.php";?>
 
     <main role="main">
       <div class="container">
@@ -175,8 +175,8 @@ if ($err_status_page) {
       </div>
     </main>
 
-    <?php require("importjs.php");?>
-    <?php require("footer.php");?>
+    <?php require_once "importjs.php";?>
+    <?php require_once "footer.php";?>
 
   </body>
 

@@ -1,7 +1,7 @@
 <?php
-    require_once("include/db_info.php");
-    require_once("include/setlang.php");
-    require_once("include/include_auth.php");
+    require_once "include/db_info.php";
+    require_once "include/setlang.php";
+    require_once "include/include_auth.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <?php require("importcss.php");
+  <?php require_once "importcss.php";
     if (!$auth->islogged()) {
         echo "<script>window.location = \"./login.php\";</script>";
         die();
@@ -27,7 +27,7 @@
 
 <body>
   <!-- navbar -->
-  <?php require("nav.php");
+  <?php require_once "nav.php";
     $uid = $auth->getSessionUID($auth->getSessionHash());
     $user = $auth->getUser($uid);
     $stmt_userdata = $db_conn->prepare("select sangme from userdata where uid=:uid");
@@ -125,8 +125,8 @@
     }
   </script>
 
-  <?php require("importjs.php");?>
-  <?php require("footer.php");?>
+  <?php require_once "importjs.php";?>
+  <?php require_once "footer.php";?>
 
 </body>
 

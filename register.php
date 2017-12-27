@@ -1,7 +1,7 @@
 <?php
-    require_once("include/db_info.php");
-    require_once("include/setlang.php");
-    require_once("include/include_auth.php");
+    require_once "include/db_info.php";
+    require_once "include/setlang.php";
+    require_once "include/include_auth.php";
 ?>
   <!doctype html>
   <html lang="en">
@@ -17,13 +17,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?php require("importcss.php");?>
+    <?php require_once "importcss.php";?>
 
   </head>
 
   <body>
     <!-- navbar -->
-    <?php require("nav.php");
+    <?php require_once "nav.php";
     if (isset($_POST['id']) && isset($_POST['pw']) && isset($_POST['pwvf']) && isset($_POST['email'])) {
         $id = $_POST['id'];
         $email = $_POST['email'];
@@ -102,8 +102,8 @@
       }
     </script>
 
-    <?php require("importjs.php");?>
-    <?php require("footer.php");?>
+    <?php require_once "importjs.php";?>
+    <?php require_once "footer.php";?>
 
   </body>
 
