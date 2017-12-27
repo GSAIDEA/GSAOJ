@@ -25,7 +25,7 @@ require("checkprivilege.php");
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
           <h1><?php echo $MSG_ADMIN_ADD_PROBLEM;?></h1>
           <hr>
-          <div class="form-group">
+          <form class="form-group" action="addproblem.php" method="post">
             <label for="id"><?php echo $MSG_PROBLEM_ID;?></label>
             <input type="number" class="form-control" id="id" min="1">
             <label for="title"><?php echo $MSG_PROBLEM_TITLE;?></label>
@@ -60,7 +60,8 @@ require("checkprivilege.php");
                 <input type="number" class="form-control" id="ml" min="1">
               </div>
             </div>
-          </div>
+	    <button class="btn btn-primary" type="submit"><?php echo $MSG_PROBLEM_SUBMIT;?></button>
+          </form>
           <div class="row">
             <div class="col-md-12">
               <button type="button" class="btn btn-primary"><?php echo $MSG_ADMIN_ADD_PROBLEM_PREVIEW;?></button>
